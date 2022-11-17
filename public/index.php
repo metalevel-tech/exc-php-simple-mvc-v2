@@ -3,7 +3,7 @@
  * This is the entry point for the application.
  */
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 use app\core\Application;
 
 $app = new Application();
