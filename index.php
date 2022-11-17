@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Simple MVC</title>
-</head>
-<body>
-    <h1>Index</h1>
-</body>
-</html>
+<?php
+/**
+ * This is the entry point for the application.
+ */
+
+require_once __DIR__ . '/vendor/autoload.php';
+use app\core\Application;
+
+$app = new Application();
+
+$app->router->get('/', function() {
+    return 'Hello World!';
+});
+
+// $app->router->get('/contacts', function() {
+//     return 'Contacts';
+// });
+
+$app->run();
