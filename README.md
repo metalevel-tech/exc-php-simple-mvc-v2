@@ -8,6 +8,7 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 * The Codeholic at GitHub: ["Build PHP MVC Framework from Scratch"](https://github.com/thecodeholic/php-mvc-framework)
 * MLT Wiki: [Git CLI hints](https://wiki.metalevel.tech/wiki/Git_CLI_hints)
 * Free Code Camp: [Push a new local branch to a remote Git repository and track it too](https://forum.freecodecamp.org/t/push-a-new-local-branch-to-a-remote-git-repository-and-track-it-too/13222)
+* Bootstrap: [Bootstrap 5.2 download](https://getbootstrap.com/docs/5.2/getting-started/download/)
 
 ## Stages
 
