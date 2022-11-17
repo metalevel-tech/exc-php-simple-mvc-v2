@@ -21,7 +21,7 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 * Project Structure
 * The project as a Composer package
 
-## PHP
+## PHP Hints
 
 You can run the PHP built-in web server by `php -S localhost:8000`.
 
@@ -34,6 +34,6 @@ echo '</pre>';
 exit;
 ```
 
-## Autoloading classes with Composer
+## Autoload classes by the help of Composer
 
 Initialize the project by `composer init` which will create a `composer.json` file. Then setup the [autoload](https://youtu.be/GTESlsYTUns?t=540) option. Another way is to use the [`spl_autoload_register()`](https://github.com/metalevel-tech/php-simple-mvc-v1/blob/master/index.php#L5) function.

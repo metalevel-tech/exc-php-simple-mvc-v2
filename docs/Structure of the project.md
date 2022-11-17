@@ -2,9 +2,9 @@
 
 ## Why here have dist/ and project/ directories?
 
-The `project/` directory is presented because the main guide of the project ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/watch?v=WKy-N0q3WRo&list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1) uses it. The `dist/` directory is presented because the guide [Bootstrap 5.2 download](https://getbootstrap.com/docs/5.2/getting-started/download/) uses it.
+The `project/` directory is presented because the main guide of the project ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/watch?v=WKy-N0q3WRo&list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1) uses it. The `dist/` directory is presented because some guides as [Bootstrap 5.2 Webpack](https://getbootstrap.com/docs/5.2/getting-started) uses it.
 
-So right now I decided to save my time and have created the `dist/` directory as sym-link to the `project/` directory. It is not a good idea to have a sym-link in the repository, but I will decide later which way to go.
+So at the moment I decided to save my time and have created the `dist/` directory as sym-link to the `project/` directory. It is not a good idea to have a sym-link in the repository, but I will decide later which way to go.
 
 ## What is the meaning of the /dist directory in open source projects?
 
