@@ -8,12 +8,8 @@ use app\core\Application;
 
 $app = new Application();
 
-$app->router->get('/', function() {
-    return 'Hello World!';
-});
-
-$app->router->get('/contact', function() {
-    return 'Contact page';
-});
+$app->router->get('/', "home");
+$app->router->get('/home', "home");
+$app->router->get('/contact', "contact");
 
 $app->run();
