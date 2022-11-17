@@ -33,7 +33,9 @@
     "regenerator",
     "href",
     "fontawesome",
-    "Codeholic"
+    "Codeholic",
+    "wiki",
+    "Wiki"
   ],
   "cSpell.words": [
     "Metalevel",
@@ -70,7 +72,9 @@
     "regenerator",
     "href",
     "fontawesome",
-    "Codeholic"
+    "Codeholic",
+    "wiki",
+    "Wiki"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],
