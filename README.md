@@ -1,6 +1,6 @@
 # PHP Model View Controller (MVC)
 
-Sample example of PHP MVC. It is like a tutorial and follows the gide ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/watch?v=WKy-N0q3WRo&list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1) course provided by The Codeholic at YouTube. The full course is about 6 hours and 30 minutes long.
+Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/watch?v=WKy-N0q3WRo&list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1) course provided by The Codeholic at YouTube. The full course is about 6 hours and 30 minutes long.
 
 ## References
 
@@ -23,6 +23,15 @@ Sample example of PHP MVC. It is like a tutorial and follows the gide ["Build PH
 ## PHP
 
 You can run the PHP built-in web server by `php -S localhost:8000`.
+
+Dup variables in PHP:
+
+```php
+echo '<pre>';
+var_dump($position);
+echo '</pre>';
+exit;
+```
 
 ## Autoloading classes with Composer
 

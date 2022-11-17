@@ -12,8 +12,8 @@ $app->router->get('/', function() {
     return 'Hello World!';
 });
 
-// $app->router->get('/contacts', function() {
-//     return 'Contacts';
-// });
+$app->router->get('/contact', function() {
+    return 'Contact page';
+});
 
 $app->run();

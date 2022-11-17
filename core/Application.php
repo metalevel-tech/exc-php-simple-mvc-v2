@@ -12,12 +12,15 @@ namespace app\core;
 
 class Application
 {
-    // PHP 7.4 typed properties feature
+    // PHP 7.4 typed properties, 
+    // https://www.php.net/manual/en/migration74.new-features.php
     public Router $router;
+    public Request $request;
 
     public function __construct()
     {
-        $this->router = new Router();
+        $this->request = new Request();
+        $this->router = new Router($this->request);
     }
 
     public function run()
