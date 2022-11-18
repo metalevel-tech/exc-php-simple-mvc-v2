@@ -12,21 +12,30 @@ namespace app\core;
 
 class Application
 {
-    // PHP 7.4 typed properties, 
-    // https://www.php.net/manual/en/migration74.new-features.php
+    
+    public static string $ROOT_DIR;
     public Router $router;
     public Request $request;
-
-    public function __construct()
+    
+    /**
+     * __construct
+     *
+     * @return void
+     */
+    public function __construct($rootPath)
     {
+        self::$ROOT_DIR = $rootPath;
         $this->request = new Request();
         $this->router = new Router($this->request);
     }
-
+    
+    /**
+     * run
+     *
+     * @return void
+     */
     public function run()
     {
         echo $this->router->resolve();
     }
-
-    
 }

@@ -1,6 +1,1 @@
-<?php
-/**
- * This is the /contact page content.
- */
-?>
-<h1>Contact</h1>
+<h1>Contact us</h1>

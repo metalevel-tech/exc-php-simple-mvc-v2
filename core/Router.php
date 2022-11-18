@@ -21,7 +21,7 @@ class Router
      */
     protected array $routes = [];
 
-    
+
     /**
      * __construct
      *
@@ -33,11 +33,23 @@ class Router
         $this->request = $request;
     }
 
+    /**
+     * get
+     *
+     * @param  string $path
+     * @param  function $callback
+     * @return void
+     */
     public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;
     }
 
+    /**
+     * resolve
+     *
+     * @return void
+     */
     public function resolve()
     {
         $path = $this->request->getPath();
@@ -62,8 +74,42 @@ class Router
         // exit;
     }
 
+    /**
+     * renderView
+     *
+     * @param  string $view
+     * @return void
+     */
     public function renderView($view)
     {
-        include_once __DIR__ . "/../views/$view.php";
+        $layoutContent = $this->layoutContent();
+        $viewContent = $this->renderOnlyView($view);
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+
+    /**
+     * layoutContent
+     *
+     * @param  string $layout
+     * @return string
+     */
+    protected function layoutContent(string $layout = "main")
+    {
+        ob_start();             // Start caching buffer, so nothing will be output to the browser
+        include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
+        return ob_get_clean();  // Stop caching buffer, and return the cached content
+    }
+
+    /**
+     * renderOnlyView
+     *
+     * @param  string $view
+     * @return string
+     */
+    protected function renderOnlyView(string $view = "home")
+    {
+        ob_start();
+        include_once Application::$ROOT_DIR . "/views/$view.php";
+        return ob_get_clean();
     }
 }

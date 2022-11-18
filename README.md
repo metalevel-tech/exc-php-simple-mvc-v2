@@ -9,6 +9,7 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 * MLT Wiki: [Git CLI hints](https://wiki.metalevel.tech/wiki/Git_CLI_hints)
 * Free Code Camp: [Push a new local branch to a remote Git repository and track it too](https://forum.freecodecamp.org/t/push-a-new-local-branch-to-a-remote-git-repository-and-track-it-too/13222)
 * Bootstrap: [Bootstrap 5.2 download](https://getbootstrap.com/docs/5.2/getting-started/download/)
+* PHP: [Typed properties (v.7.4+)](https://www.php.net/manual/en/migration74.new-features.php)
 
 ## Stages
 
