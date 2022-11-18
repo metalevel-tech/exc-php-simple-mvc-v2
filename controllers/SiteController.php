@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 
@@ -20,21 +19,25 @@ class SiteController extends Controller
     public function home()
     {
         $params = [
-            'name' => 'PHP Simple MVC Framework',
+            "name" => "PHP Simple MVC Framework",
         ];
 
-        return $this->render('home', $params);
+        return $this->render("home", $params);
     }
 
     public function contact()
     {
-        return $this->render('contact');
+        return $this->render("contact");
     }
 
     public function handleContact(Request $request)
     {
         $body = $request->getBody();
+        echo "<pre>";
+        var_dump($body);
+        echo "</pre>";
+        exit;
 
-        return 'Handling submitted data';
+        return "Handling submitted data";
     }
 }
