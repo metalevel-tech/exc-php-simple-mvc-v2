@@ -37,7 +37,9 @@
     "wiki",
     "Wiki",
     "Vadorequest",
-    "gulpfile"
+    "gulpfile",
+    "Kinsta",
+    "Lindevs"
   ],
   "cSpell.words": [
     "Metalevel",
@@ -78,7 +80,9 @@
     "wiki",
     "Wiki",
     "Vadorequest",
-    "gulpfile"
+    "gulpfile",
+    "Kinsta",
+    "Lindevs"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],

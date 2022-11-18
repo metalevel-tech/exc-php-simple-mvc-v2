@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Response
+ * Class Controller
  * 
  * @author  Spas Z. Spasov <spas.z.spasov@metalevel.tech>
  * @package app\core
@@ -11,16 +11,10 @@
 
 namespace app\core;
 
-class Response
-{        
-    /**
-     * setStatusCode
-     *
-     * @param  int $code
-     * @return void
-     */
-    public function setStatusCode(int $code)
+class Controller
+{
+    public function render(string $view, array $params = [])
     {
-        http_response_code($code);
+        return Application::$app->router->renderView($view, $params);
     }
 }
