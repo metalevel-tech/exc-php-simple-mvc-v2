@@ -1,5 +1,7 @@
 <?php
 
+namespace app\core;
+
 /**
  * Class Request
  * 
@@ -8,9 +10,6 @@
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
-
-namespace app\core;
-
 class Request
 {
     /**
@@ -36,8 +35,32 @@ class Request
      * @param $_SERVER['REQUEST_METHOD']
      * @return void
      */
-    public function method()
+    public function getMethod()
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
+    }
+
+    /**
+     * getBody
+     *
+     * @return sanitized $_POST or $_GET
+     */
+    public function getBody()
+    {
+        $body = [];
+
+        if ($this->getMethod() === "get") {
+            foreach ($_GET as $key => $value) {
+                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+
+        if ($this->getMethod() === "post") {
+            foreach ($_POST as $key => $value) {
+                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+
+        return $body;
     }
 }

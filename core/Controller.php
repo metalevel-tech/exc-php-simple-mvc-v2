@@ -1,5 +1,7 @@
 <?php
 
+namespace app\core;
+
 /**
  * Class Controller
  * 
@@ -8,9 +10,6 @@
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
-
-namespace app\core;
-
 class Controller
 {
     public function render(string $view, array $params = [])

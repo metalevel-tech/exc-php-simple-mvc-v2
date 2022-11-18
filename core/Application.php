@@ -1,5 +1,7 @@
 <?php
 
+namespace app\core;
+
 /**
  * Class Application
  * 
@@ -8,9 +10,6 @@
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
-
-namespace app\core;
-
 class Application
 {
     public static string $ROOT_DIR;
@@ -18,7 +17,7 @@ class Application
     public Request $request;
     public Response $response;
     public static Application $app;
-    
+
     /**
      * __construct
      *
@@ -33,7 +32,7 @@ class Application
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
     }
-    
+
     /**
      * run
      *

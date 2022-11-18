@@ -1,5 +1,7 @@
 <?php
 
+namespace app\core;
+
 /**
  * Class Router
  * 
@@ -8,9 +10,6 @@
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
-
-namespace app\core;
-
 class Router
 {
     public Request $request;
@@ -68,7 +67,7 @@ class Router
     public function resolve()
     {
         $path = $this->request->getPath();
-        $method = $this->request->method();
+        $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
@@ -84,9 +83,8 @@ class Router
         if (is_array($callback)) {
             $callback[0] = new $callback[0]();
         }
-
         // https://www.php.net/manual/en/function.call-user-func.php
-        return call_user_func($callback);
+        return call_user_func($callback, $this->request);
     }
 
     /**
@@ -136,6 +134,7 @@ class Router
      * renderOnlyView
      *
      * @param  string $view
+     * @param  array $params
      * @return string
      */
     protected function renderOnlyView(string $view = "home", array $params = [])
@@ -143,7 +142,7 @@ class Router
         // Convert $params[] to variables named as the array keys,
         // scoped only to this function. Otherwise, inside the $view file,
         // we will have to use $params['name'] instead of $name.
-        // $"name" = "Spas Z. Spasov";
+        // $"name" = "name value";
         foreach ($params as $key => $value) {
             $$key = $value;
         }

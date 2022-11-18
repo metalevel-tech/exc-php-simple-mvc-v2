@@ -1,5 +1,7 @@
 <?php
 
+namespace app\core;
+
 /**
  * Class Response
  * 
@@ -8,11 +10,8 @@
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
-
-namespace app\core;
-
 class Response
-{        
+{
     /**
      * setStatusCode
      *

@@ -1,5 +1,11 @@
 <?php
 
+namespace app\controllers;
+
+use app\core\Application;
+use app\core\Controller;
+use app\core\Request;
+
 /**
  * Class SiteController
  * 
@@ -9,19 +15,8 @@
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
 
-namespace app\controllers;
-
-use app\core\Controller;
-
 class SiteController extends Controller
 {
-    /**
-     * In the main guide () this function is not-static. 
-     * But in PHP 8.0+ "non-static methods cannot be called statically"...
-     * But when we using $this in the function, we need to make it non-static...
-     * https://lindevs.com/calling-non-static-class-methods-statically-produces-fatal-error-in-php-8-0
-     * See also: app\core\Router->resolve() :84,89
-     */
     public function home()
     {
         $params = [
@@ -36,9 +31,10 @@ class SiteController extends Controller
         return $this->render('contact');
     }
 
-    public function handleContact()
+    public function handleContact(Request $request)
     {
-        return "Handling submitted data";
+        $body = $request->getBody();
+
+        return 'Handling submitted data';
     }
-    
 }
