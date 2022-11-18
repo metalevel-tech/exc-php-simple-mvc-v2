@@ -1,0 +1,18 @@
+{
+    "name": "metalevel-tech/php-simple-mvc",
+    "description": "Sample example and exercise how to build PHP MVC from scratch.",
+    "type": "project",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Spas Z. Spasov",
+            "email": "spas.z.spasov@metalevel.tech"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    }
+}

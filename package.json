@@ -1,0 +1,42 @@
+{
+  "name": "php-simple-mvc",
+  "version": "1.0.0",
+  "description": "Install few Transpiler and Uglify tools that I need in my php-mvc project.",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tail-log": "sudo bash -c '>/var/log/apache2/php-mvc.szs.space.error.log' && tail -f /var/log/apache2/php-mvc.szs.space.error.log",
+    "babel": "babel --plugins @babel/plugin-transform-regenerator assets/js/src/ --out-dir assets/js/dist",
+    "uglifyjs": "bash -c 'for f in assets/js/dist/*.js; do fn=${f##*/}; fn=${fn%.*}; uglifyjs $f --compress --mangle -o assets/js/dist/${fn}.min.js; done #--toplevel --source-map'",
+    "uglifyjs-post": "sleep 1 && sed -r 's#\\.js\";#.min.js\";#g' assets/js/dist/*.min.js -i",
+    "lessc": "bash -c 'for f in assets/css/src/*.*ss; do fn=${f##*/}; fn=${fn%.*}; lessc --strict-imports $f --clean-css=\"--s1 --advanced --compatibility=ie8\" assets/css/dist/${fn}.min.css; done'",
+    "hz-fa-lessc": "lessc --strict-imports assets/vendor/fontawesome/css/hyperzon.selected.css --clean-css=\"--s1 --advanced --compatibility=ie8\" assets/vendor/fontawesome/css/hyperzon.selected.min.css",
+    "clean": "rm -f assets/js/dist/* && rm -f assets/css/dist/*",
+    "build": "npm run clean && npm run babel && npm run uglifyjs && npm run uglifyjs-post && npm run lessc && npm run hz-fa-lessc",
+    "watch": "onchange -i 'assets/js/src/*.js' 'assets/css/src/*.less' 'assets/vendor/fontawesome/css/hyperzon.selected.css' -- npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metalevel-tech/php-simple-mvc.git"
+  },
+  "author": "Spas Z. Spasov",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/metalevel-tech/php-simple-mvc-v2/issues"
+  },
+  "homepage": "https://github.com/metalevel-tech/php-simple-mvc-v2#readme",
+  "dependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/plugin-transform-regenerator": "^7.18.6",
+    "@babel/plugin-transform-spread": "^7.19.0",
+    "@babel/preset-env": "^7.19.3",
+    "jquery": "^3.6.1",
+    "jquery.easing": "^1.4.1",
+    "less": "^4.1.3",
+    "less-plugin-clean-css": "^1.5.1",
+    "onchange": "^7.1.0",
+    "uglify-js": "^3.17.2"
+  }
+}
+

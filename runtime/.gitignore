@@ -1,0 +1,5 @@
+# User generated data content.
+# Ignore everything in this directory,
+# except for .gitingore itself.
+*
+!.gitignore

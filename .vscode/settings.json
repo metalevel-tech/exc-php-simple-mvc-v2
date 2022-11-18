@@ -35,7 +35,11 @@
     "fontawesome",
     "Codeholic",
     "wiki",
-    "Wiki"
+    "Wiki",
+    "Vadorequest",
+    "gulpfile",
+    "Kinsta",
+    "Lindevs"
   ],
   "cSpell.words": [
     "Metalevel",
@@ -74,7 +78,11 @@
     "fontawesome",
     "Codeholic",
     "wiki",
-    "Wiki"
+    "Wiki",
+    "Vadorequest",
+    "gulpfile",
+    "Kinsta",
+    "Lindevs"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],
