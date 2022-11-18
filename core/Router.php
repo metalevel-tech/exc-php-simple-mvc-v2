@@ -12,14 +12,14 @@ namespace app\core;
 class Router
 {
     public Request $request;
-
+    public Response $response;
+    protected array $routes = [];
     /**
      *  protected array $routes = [
      *      'get'  => [ '/' => 'callBack', '/contacts' => 'callBack' ],
      *      'post' => [ '/posts' => 'callBack', ... ]
      *  ];
      */
-    protected array $routes = [];
 
 
     /**
@@ -28,9 +28,10 @@ class Router
      * @param  \app\core\Request $request
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
+        $this->response = $response;
     }
 
     /**
@@ -43,6 +44,18 @@ class Router
     public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;
+    }
+        
+    /**
+     * post
+     *
+     * @param  string $path
+     * @param  function $callback
+     * @return void
+     */
+    public function post($path, $callback)
+    {
+        $this->routes['post'][$path] = $callback;
     }
 
     /**
@@ -57,33 +70,43 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
-            return 'Not found';
+            $this->response->setStatusCode(404);
+            return $this->renderView("_HTTP404");
         }
-
+        
         if (is_string($callback)) {
+            $this->response->setStatusCode(200);
             return $this->renderView($callback);
         }
 
         return call_user_func($callback);
-
-        // echo '<pre>';
-        // var_dump($path);
-        // var_dump($method);
-        // var_dump($this->routes);
-        // echo '</pre>';
-        // exit;
     }
 
     /**
      * renderView
      *
      * @param  string $view
-     * @return void
+     * @return string
      */
-    public function renderView($view)
+    public function renderView(string $view)
     {
         $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view);
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+        
+    /**
+     * renderContent
+     * 
+     * It is like renderView, but instead of view,
+     * it renders (HTML text) $viewContent directly.
+     *
+     * @param  string $viewContent
+     * @return string
+     */
+    public function renderContent(string $viewContent)
+    {
+        $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
