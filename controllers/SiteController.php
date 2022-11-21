@@ -16,6 +16,11 @@ use app\core\Request;
 
 class SiteController extends Controller
 {
+    /**
+     * home
+     *
+     * @return string
+     */
     public function home()
     {
         $params = [
@@ -25,18 +30,29 @@ class SiteController extends Controller
         return $this->render("home", $params);
     }
 
+    /**
+     * contact
+     *
+     * @return string
+     */
     public function contact()
     {
         return $this->render("contact");
     }
-
+    
+    /**
+     * handleContact
+     *
+     * @param  \app\core\Request $request
+     * @return string
+     */
     public function handleContact(Request $request)
     {
         $body = $request->getBody();
-        echo "<pre>";
-        var_dump($body);
-        echo "</pre>";
-        exit;
+        // echo "<pre>";
+        // var_dump($body);
+        // echo "</pre>";
+        // exit;
 
         return "Handling submitted data";
     }

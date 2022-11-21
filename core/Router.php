@@ -15,18 +15,12 @@ class Router
     public Request $request;
     public Response $response;
     protected array $routes = [];
-    /**
-     *  protected array $routes = [
-     *      "get"  => [ "/" => "callBack", "/contacts" => "callBack" ],
-     *      "post" => [ "/posts" => "callBack", ... ]
-     *  ];
-     */
-
 
     /**
      * __construct
      *
      * @param  \app\core\Request $request
+     * @param  \app\core\Response $response
      * @return void
      */
     public function __construct(Request $request, Response $response)
@@ -34,27 +28,27 @@ class Router
         $this->request = $request;
         $this->response = $response;
     }
-
+    
     /**
      * get
      *
      * @param  string $path
-     * @param  function $callback
+     * @param  mixed $callback
      * @return void
      */
-    public function get($path, $callback)
+    public function get(string $path, mixed $callback)
     {
         $this->routes["get"][$path] = $callback;
     }
-
+    
     /**
      * post
      *
      * @param  string $path
-     * @param  function $callback
+     * @param  mixed $callback
      * @return void
      */
-    public function post($path, $callback)
+    public function post(string $path, mixed $callback)
     {
         $this->routes["post"][$path] = $callback;
     }
@@ -62,12 +56,16 @@ class Router
     /**
      * resolve
      *
-     * @return void
+     * @var string $path
+     * @var string $method
+     * @var mixed $callback
+     * 
+     * @return string
      */
     public function resolve()
     {
         $path = $this->request->getPath();
-        $method = $this->request->getMethod();
+        $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {

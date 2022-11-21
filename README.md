@@ -17,12 +17,16 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 
 ### Stage 1
 
-* Custom Routing
+* Routing
 * Controllers
 * Views
 * Layouts
 * Project Structure
-* The project as a Composer package
+* Composer initialize and autoload
+
+### Stage 2
+
+* Registration
 
 ## PHP Hints
 
