@@ -79,7 +79,8 @@ class Router
         }
 
         if (is_array($callback)) {
-            $callback[0] = new $callback[0]();
+            Application::$app->controller = new $callback[0]();
+            $callback[0] = Application::$app->controller;
         }
         // https://www.php.net/manual/en/function.call-user-func.php
         return call_user_func($callback, $this->request);
@@ -118,11 +119,13 @@ class Router
     /**
      * layoutContent
      *
-     * @param  string $layout
+     * @var string $layout
      * @return string
      */
-    protected function layoutContent(string $layout = "main")
+    protected function layoutContent()
     {
+        $layout = Application::$app->controller->layout;
+
         ob_start();             // Start caching buffer, so nothing will be output to the browser
         include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
         return ob_get_clean();  // Stop caching buffer, and return the cached content

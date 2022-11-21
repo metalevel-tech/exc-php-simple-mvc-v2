@@ -16,16 +16,26 @@ use app\core\Request;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
-        return $this->render('login');
+        
+        $this->setLayout("auth");
+        
+        if ($request->isPost()) {
+            return "Handling submitted data";
+        }
+
+        return $this->render("login");
     }
     
     public function register(Request $request)
     {
+        $this->setLayout("auth");
+        
         if ($request->isPost()) {
-            return 'Handling submitted data';
+            return "Handling submitted data";
         }
-        return $this->render('register');
+
+        return $this->render("register");
     }
 }
