@@ -88,5 +88,6 @@
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],
   "files.exclude": {
     "**/node_modules": true
-  }
+  },
+  "vsicons.presets.angular": true
 }

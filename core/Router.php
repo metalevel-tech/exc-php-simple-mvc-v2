@@ -1,7 +1,5 @@
 <?php
 
-namespace app\core;
-
 /**
  * Class Router
  * 
@@ -10,6 +8,9 @@ namespace app\core;
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
+
+namespace app\core;
+
 class Router
 {
     public Request $request;
@@ -28,7 +29,7 @@ class Router
         $this->request = $request;
         $this->response = $response;
     }
-    
+
     /**
      * get
      *
@@ -40,7 +41,7 @@ class Router
     {
         $this->routes["get"][$path] = $callback;
     }
-    
+
     /**
      * post
      *

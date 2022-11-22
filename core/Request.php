@@ -1,7 +1,5 @@
 <?php
 
-namespace app\core;
-
 /**
  * Class Request
  * 
@@ -10,6 +8,9 @@ namespace app\core;
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
+
+namespace app\core;
+
 class Request
 {
     /**
@@ -39,7 +40,7 @@ class Request
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
-    
+
     /**
      * isGet
      *
@@ -49,7 +50,7 @@ class Request
     {
         return $this->method() === 'get';
     }
-    
+
     /**
      * isPost
      *

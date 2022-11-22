@@ -1,7 +1,5 @@
 <?php
 
-namespace app\core;
-
 /**
  * Class Controller
  * 
@@ -10,10 +8,13 @@ namespace app\core;
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
+
+namespace app\core;
+
 class Controller
 {
     public string $layout = "main";
-    
+
     /**
      * setLayout
      *
@@ -24,7 +25,7 @@ class Controller
     {
         $this->layout = $layout;
     }
-        
+
     /**
      * render
      *

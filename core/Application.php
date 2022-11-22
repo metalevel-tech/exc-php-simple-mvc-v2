@@ -1,7 +1,5 @@
 <?php
 
-namespace app\core;
-
 /**
  * Class Application
  * 
@@ -10,6 +8,9 @@ namespace app\core;
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
+
+namespace app\core;
+
 class Application
 {
     public static string $ROOT_DIR;

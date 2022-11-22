@@ -26,7 +26,10 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 
 ### Stage 2
 
-* Registration
+* Registration and login forms
+* Modules
+* Forms
+* Validation
 
 ## PHP Hints
 

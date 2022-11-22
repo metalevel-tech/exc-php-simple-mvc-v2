@@ -1,10 +1,5 @@
 <?php
 
-namespace app\controllers;
-
-use app\core\Controller;
-use app\core\Request;
-
 /**
  * Class SiteController
  * 
@@ -13,6 +8,11 @@ use app\core\Request;
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
+
+namespace app\controllers;
+
+use app\core\Controller;
+use app\core\Request;
 
 class SiteController extends Controller
 {
@@ -39,7 +39,7 @@ class SiteController extends Controller
     {
         return $this->render("contact");
     }
-    
+
     /**
      * handleContact
      *
