@@ -1,45 +1,32 @@
 <h1>Create an account</h1>
+<?php
+// Form::begin() will output the <form> opening tag
+// and will return an instance of the Form class,
+// which we will store in the $form variable,
+// so that we can chain methods.
+// Form::end() will output the </form> closing tag
+use app\core\form\Form;
 
-<form action="" method="post">
+?>
+
+<?php $form = Form::begin("", "post"); ?>
     <div class="row">
         <div class="col">
-            <div class="mb-3">
-                <label>First name</label>
-                <input type="text" name="firstName" value="<?php echo $model->firstName; ?>" class="form-control<?php echo $model->hasError('firstName') ? ' is-invalid' : ''; ?>">
-                <div class="invalid-feedback">
-                    <?php echo $model->getFirstError('firstName'); ?>
-                </div>
-            </div>
+            <?php echo $form->field($model, 'firstName') ?>
         </div>
-
         <div class="col">
-            <div class="mb-3">
-                <label>Last name</label>
-                <input type="text" name="lastName" class="form-control">
-            </div>
+            <?php echo $form->field($model, 'lastName') ?>
         </div>
     </div>
-
     <div class="row">
         <div class="col">
-            <div class="mb-3">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control">
-            </div>
+            <?php echo $form->field($model, "password")->passwordField(); ?>
         </div>
-
         <div class="col">
-            <div class="mb-3">
-                <label>Confirm password</label>
-                <input type="password" name="confirmPassword" class="form-control">
-            </div>
+            <?php echo $form->field($model, "confirmPassword")->passwordField(); ?>
         </div>
     </div>
-
-    <div class="mb-3">
-        <label>Email</label>
-        <input type="text" name="email" class="form-control">
-    </div>
+    <?php echo $form->field($model, "email"); ?>
 
     <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<?php Form::end(); ?>

@@ -13,6 +13,7 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 * Kinsta: [What’s New in PHP 8.1: Features, Changes, Improvements, and More](https://kinsta.com/blog/php-8-1/#firstclass-callable-syntax)
 * Lindevs: [Calling Non-Static Class Methods Statically Produces Fatal Error in PHP 8.0](https://lindevs.com/calling-non-static-class-methods-statically-produces-fatal-error-in-php-8-0) in relation with [this part](https://youtu.be/GTESlsYTUns?t=3301) ot the main guide.
 * CreatifWerks: [Difference between `printf` and `sprintf` PHP](https://www.creatifwerks.com/2020/06/18/difference-between-printf-and-sprintf-php/)
+* Jakub Míšek at YouTube: [Profiling PHP in Visual Studio Code](https://youtu.be/VQB6pdDhGWs)
 
 ## Stages
 

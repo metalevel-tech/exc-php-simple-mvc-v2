@@ -20,16 +20,19 @@ class RegisterModel extends Model
     public string $email = '';
     public string $password = '';
     public string $confirmPassword = '';
+
     
-    
+    /**
+     * Summary of register
+     * @return void
+     */
     public function register()
     {
         echo "Creating new user";
     }
     
     /**
-     * rules
-     *
+     * Summary of rules
      * @return array
      */
     public function rules(): array
