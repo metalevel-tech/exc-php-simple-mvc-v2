@@ -94,7 +94,7 @@ class Router
      * @param  array $params
      * @return string
      */
-    public function renderView(string $view, array $params = [])
+    public function renderView(string $view, array $params = []): string
     {
         $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
@@ -123,7 +123,7 @@ class Router
      * @var string $layout
      * @return string
      */
-    protected function layoutContent()
+    protected function layoutContent(): string
     {
         $layout = Application::$app->controller->layout;
 
@@ -139,15 +139,19 @@ class Router
      * @param  array $params
      * @return string
      */
-    protected function renderOnlyView(string $view = "home", array $params = [])
+    protected function renderOnlyView(string $view = "home", array $params = []): string
     {
-        // Convert $params[] to variables named as the array keys,
-        // scoped only to this function. Otherwise, inside the $view file,
-        // we will have to use $params['name'] instead of $name.
-        // $"name" = "name value";
-        foreach ($params as $key => $value) {
-            $$key = $value;
-        }
+        /**
+         * Convert $params[] to variables named as the array keys,
+         * scoped only to this function. Otherwise, inside the $view file,
+         * we will have to use $params['name'] instead of $name.
+         * $"name" = "name value";
+         * 
+         foreach ($params as $key => $value) {
+             $$key = $value;
+         }
+         */
+        extract($params);
 
         ob_start();
         include_once Application::$ROOT_DIR . "/views/$view.php";

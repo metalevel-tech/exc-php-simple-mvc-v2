@@ -93,10 +93,10 @@ abstract class Model
                     $this->addError($attribute, self::RULE_MAX, $rule);
                 }
 
-                // The RULE_MATCH is assigned to the passwordConfirm field (see RegisterModel.php),
-                // so we need to check if the value of the passwordConfirm field is equal to 
+                // The RULE_MATCH is assigned to the confirmPassword field (see RegisterModel.php),
+                // so we need to check if the value of the confirmPassword field is equal to 
                 // the value of the password field, which name is defined in $this->{$rule['match']},
-                // where $rule is 'passwordConfirm' and $rule['match'] is 'password'.
+                // where $rule is 'confirmPassword' and $rule['match'] is 'password'.
                 // See RegisterModel.php and watch https://youtu.be/ZSYhQkM5VIM?t=1751
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addError($attribute, self::RULE_MATCH, $rule);
@@ -143,5 +143,27 @@ abstract class Model
             self::RULE_MATCH => "This field must be the same as {match}",
             self::RULE_UNIQUE => "Record with this {field} already exists"
         ];
+    }
+    
+    /**
+     * hasError
+     *
+     * @param  string $attribute
+     * @return mixed
+     */
+    public function hasError(string $attribute): mixed
+    {
+        return $this->errors[$attribute] ?? false;
+    }
+    
+    /**
+     * getFurstError
+     *
+     * @param  string $attribute
+     * @return mixed
+     */
+    public function getFirstError(string $attribute): mixed
+    {
+        return $this->errors[$attribute][0] ?? false;
     }
 }

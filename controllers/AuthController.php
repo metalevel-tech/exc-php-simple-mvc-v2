@@ -40,7 +40,7 @@ class AuthController extends Controller
      * @param  Request $request
      * @return string
      */
-    public function register(Request $request)
+    public function register(Request $request): string
     {
         $registerModel = new RegisterModel();
 
@@ -51,10 +51,9 @@ class AuthController extends Controller
                 return "Success";
             }
 
-            echo "<pre>";
-            var_dump($registerModel->errors);
-            echo "</pre>";
-
+            // We can change the layout for the view only,
+            // after hitting the submit button.
+            $this->setLayout("auth");
             return $this->render("register", [
                 "model" => $registerModel
             ]);

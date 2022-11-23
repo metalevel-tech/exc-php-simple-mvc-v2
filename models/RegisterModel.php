@@ -15,17 +15,23 @@ use app\core\Model;
 
 class RegisterModel extends Model
 {
-    public string $firstName;
-    public string $lastName;
-    public string $email;
-    public string $password;
-    public string $passwordConfirm;
-
+    public string $firstName = '';
+    public string $lastName = '';
+    public string $email = '';
+    public string $password = '';
+    public string $confirmPassword = '';
+    
+    
     public function register()
     {
         echo "Creating new user";
     }
-
+    
+    /**
+     * rules
+     *
+     * @return array
+     */
     public function rules(): array
     {
         return [
@@ -40,7 +46,7 @@ class RegisterModel extends Model
                 [self::RULE_MIN, "min" => 8],
                 [self::RULE_MAX, "max" => 32]
             ],
-            "passwordConfirm" => [
+            "confirmPassword" => [
                 self::RULE_REQUIRED,
                 [self::RULE_MATCH, "match" => "password"]
             ]
