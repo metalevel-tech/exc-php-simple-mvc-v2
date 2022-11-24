@@ -13,6 +13,7 @@ namespace app\controllers;
 
 use app\core\Controller;
 use app\core\Request;
+use app\models\LoginModel;
 use app\models\RegisterModel;
 
 class AuthController extends Controller
@@ -25,13 +26,27 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        $loginModel = new LoginModel();
+        
         if ($request->isPost()) {
-            return "Handling submitted data";
+            $loginModel->loadData($request->getBody());
+            
+            if ($loginModel->validate() && $loginModel->login()) {
+                return "Success";
+            }
+
+            // We can change the layout for the view only,
+            // after hitting the submit button.
+            $this->setLayout("auth");
+            return $this->render("login", [
+                "model" => $loginModel
+            ]);
         }
 
         $this->setLayout("auth");
-
-        return $this->render("login");
+        return $this->render("login", [
+            "model" => $loginModel
+        ]);
     }
 
     /**

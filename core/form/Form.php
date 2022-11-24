@@ -25,7 +25,7 @@ class Form
     public static function begin(string $action, string $method): Form
     {
         // Output the <form> open tag
-        printf('<form action="#" method="%s">', $method);
+        printf('<form action="%s" method="%s">', $action, $method);
         // Then return a new instance of the Form class, thus allowing us to chain methods
         return new Form();
     }

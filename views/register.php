@@ -1,4 +1,3 @@
-<h1>Create an account</h1>
 <?php
 // Form::begin() will output the <form> opening tag
 // and will return an instance of the Form class,
@@ -8,6 +7,8 @@
 use app\core\form\Form;
 
 ?>
+
+<h1>Create an account</h1>
 
 <?php $form = Form::begin("", "post"); ?>
     <div class="row">
