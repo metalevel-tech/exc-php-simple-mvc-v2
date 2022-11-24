@@ -19,6 +19,8 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 
 ### Stage 1
 
+Covered topics:
+
 * Routing
 * Controllers
 * Views
@@ -26,12 +28,24 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 * Project Structure
 * Composer initialize and autoload
 
+Related lessons and resources:
+
+* [Routing, Controllers, Views - Part 1 | PHP MVC Framework from Scratch](https://youtu.be/GTESlsYTUns)
+* [Introduction to Composer - How to use Composer For Beginners](https://www.youtube.com/watch?v=I6wm15OWyqg)
+
 ### Stage 2
+
+Covered topics:
 
 * Registration and login forms
 * Modules
 * Forms
 * Validation
+
+Related lessons and resources:
+
+* [Models, Forms, Validation - Part 2 | PHP MVC Framework from Scratch](https://youtu.be/GTESlsYTUns) (the last 20 minutes)
+* [Models, Forms, Validation - Part 2 | PHP MVC Framework from Scratch](https://youtu.be/ZSYhQkM5VIM)
 
 ## PHP Hints
 
