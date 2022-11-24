@@ -17,12 +17,19 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 
 ### Stage 1
 
-* Custom Routing
+Covered topics:
+
+* Routing
 * Controllers
 * Views
 * Layouts
 * Project Structure
-* The project as a Composer package
+* Composer initialize and autoload
+
+Related lessons and resources:
+
+* [Routing, Controllers, Views - Part 1 | PHP MVC Framework from Scratch](https://youtu.be/GTESlsYTUns)
+* [Introduction to Composer - How to use Composer For Beginners](https://www.youtube.com/watch?v=I6wm15OWyqg)
 
 ## PHP Hints
 
