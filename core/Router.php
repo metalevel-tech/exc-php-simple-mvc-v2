@@ -18,11 +18,10 @@ class Router
     protected array $routes = [];
 
     /**
-     * __construct
-     *
+     * Summary of __construct
      * @param  \app\core\Request $request
      * @param  \app\core\Response $response
-     * @return void
+     * @return Router
      */
     public function __construct(Request $request, Response $response)
     {
@@ -31,39 +30,36 @@ class Router
     }
 
     /**
-     * get
-     *
+     * Summary of get
      * @param  string $path
      * @param  mixed $callback
      * @return void
      */
-    public function get(string $path, mixed $callback)
+    public function get(string $path, mixed $callback): void
     {
         $this->routes["get"][$path] = $callback;
     }
 
     /**
-     * post
-     *
+     * Summary of post
      * @param  string $path
      * @param  mixed $callback
      * @return void
      */
-    public function post(string $path, mixed $callback)
+    public function post(string $path, mixed $callback): void
     {
         $this->routes["post"][$path] = $callback;
     }
 
     /**
-     * resolve
-     *
+     * Summary of resolve
      * @var string $path
      * @var string $method
      * @var mixed $callback
      * 
      * @return string
      */
-    public function resolve()
+    public function resolve(): string
     {
         $path = $this->request->getPath();
         $method = $this->request->method();
@@ -88,10 +84,9 @@ class Router
     }
 
     /**
-     * renderView
-     *
-     * @param  string $view
-     * @param  array $params
+     * Summary of renderView
+     * @param string $view
+     * @param array $params
      * @return string
      */
     public function renderView(string $view, array $params = []): string
@@ -103,13 +98,13 @@ class Router
     }
 
     /**
-     * renderContent
+     * Summary of renderContent
      * 
      * It is like renderView, but instead of view,
      * it renders (HTML text) $viewContent directly.
-     *
-     * @param  string $viewContent
-     * @return string
+     * 
+     * @param string $viewContent
+     * @return array|string
      */
     public function renderContent(string $viewContent)
     {
@@ -118,8 +113,7 @@ class Router
     }
 
     /**
-     * layoutContent
-     *
+     * Summary of layoutContent
      * @var string $layout
      * @return string
      */
@@ -133,10 +127,9 @@ class Router
     }
 
     /**
-     * renderOnlyView
-     *
-     * @param  string $view
-     * @param  array $params
+     * Summary of renderOnlyView
+     * @param string $view
+     * @param array $params
      * @return string
      */
     protected function renderOnlyView(string $view = "home", array $params = []): string

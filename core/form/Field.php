@@ -48,7 +48,8 @@ class Field
                 <div class="invalid-feedback">
                     %s
                 </div>
-            </div>',
+            </div>
+            ',
             self::cleanLabel($this->attribute),
             $this->type,
             $this->attribute,
