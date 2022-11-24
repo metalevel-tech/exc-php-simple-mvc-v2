@@ -1,7 +1,5 @@
 <?php
 
-namespace app\core;
-
 /**
  * Class Router
  * 
@@ -10,23 +8,20 @@ namespace app\core;
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
+
+namespace app\core;
+
 class Router
 {
     public Request $request;
     public Response $response;
     protected array $routes = [];
-    /**
-     *  protected array $routes = [
-     *      "get"  => [ "/" => "callBack", "/contacts" => "callBack" ],
-     *      "post" => [ "/posts" => "callBack", ... ]
-     *  ];
-     */
-
 
     /**
      * __construct
      *
      * @param  \app\core\Request $request
+     * @param  \app\core\Response $response
      * @return void
      */
     public function __construct(Request $request, Response $response)
@@ -39,10 +34,10 @@ class Router
      * get
      *
      * @param  string $path
-     * @param  function $callback
+     * @param  mixed $callback
      * @return void
      */
-    public function get($path, $callback)
+    public function get(string $path, mixed $callback)
     {
         $this->routes["get"][$path] = $callback;
     }
@@ -51,10 +46,10 @@ class Router
      * post
      *
      * @param  string $path
-     * @param  function $callback
+     * @param  mixed $callback
      * @return void
      */
-    public function post($path, $callback)
+    public function post(string $path, mixed $callback)
     {
         $this->routes["post"][$path] = $callback;
     }
@@ -62,12 +57,16 @@ class Router
     /**
      * resolve
      *
-     * @return void
+     * @var string $path
+     * @var string $method
+     * @var mixed $callback
+     * 
+     * @return string
      */
     public function resolve()
     {
         $path = $this->request->getPath();
-        $method = $this->request->getMethod();
+        $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
@@ -81,7 +80,8 @@ class Router
         }
 
         if (is_array($callback)) {
-            $callback[0] = new $callback[0]();
+            Application::$app->controller = new $callback[0]();
+            $callback[0] = Application::$app->controller;
         }
         // https://www.php.net/manual/en/function.call-user-func.php
         return call_user_func($callback, $this->request);
@@ -94,7 +94,7 @@ class Router
      * @param  array $params
      * @return string
      */
-    public function renderView(string $view, array $params = [])
+    public function renderView(string $view, array $params = []): string
     {
         $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
@@ -120,11 +120,13 @@ class Router
     /**
      * layoutContent
      *
-     * @param  string $layout
+     * @var string $layout
      * @return string
      */
-    protected function layoutContent(string $layout = "main")
+    protected function layoutContent(): string
     {
+        $layout = Application::$app->controller->layout;
+
         ob_start();             // Start caching buffer, so nothing will be output to the browser
         include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
         return ob_get_clean();  // Stop caching buffer, and return the cached content
@@ -137,15 +139,19 @@ class Router
      * @param  array $params
      * @return string
      */
-    protected function renderOnlyView(string $view = "home", array $params = [])
+    protected function renderOnlyView(string $view = "home", array $params = []): string
     {
-        // Convert $params[] to variables named as the array keys,
-        // scoped only to this function. Otherwise, inside the $view file,
-        // we will have to use $params['name'] instead of $name.
-        // $"name" = "name value";
-        foreach ($params as $key => $value) {
-            $$key = $value;
-        }
+        /**
+         * Convert $params[] to variables named as the array keys,
+         * scoped only to this function. Otherwise, inside the $view file,
+         * we will have to use $params['name'] instead of $name.
+         * $"name" = "name value";
+         * 
+         foreach ($params as $key => $value) {
+             $$key = $value;
+         }
+         */
+        extract($params);
 
         ob_start();
         include_once Application::$ROOT_DIR . "/views/$view.php";

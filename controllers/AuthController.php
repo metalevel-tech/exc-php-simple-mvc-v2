@@ -1,10 +1,5 @@
 <?php
 
-namespace app\controllers;
-
-use app\core\Controller;
-use app\core\Request;
-
 /**
  * Class AuthController
  * 
@@ -14,7 +9,74 @@ use app\core\Request;
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
 
+namespace app\controllers;
+
+use app\core\Controller;
+use app\core\Request;
+use app\models\LoginModel;
+use app\models\RegisterModel;
+
 class AuthController extends Controller
 {
+    /**
+     * login
+     *
+     * @param  Request $request
+     * @return string
+     */
+    public function login(Request $request)
+    {
+        $loginModel = new LoginModel();
+        
+        if ($request->isPost()) {
+            $loginModel->loadData($request->getBody());
+            
+            if ($loginModel->validate() && $loginModel->login()) {
+                return "Success";
+            }
 
+            // We can change the layout for the view only,
+            // after hitting the submit button.
+            $this->setLayout("auth");
+            return $this->render("login", [
+                "model" => $loginModel
+            ]);
+        }
+
+        $this->setLayout("auth");
+        return $this->render("login", [
+            "model" => $loginModel
+        ]);
+    }
+
+    /**
+     * register
+     *
+     * @param  Request $request
+     * @return string
+     */
+    public function register(Request $request): string
+    {
+        $registerModel = new RegisterModel();
+
+        if ($request->isPost()) {
+            $registerModel->loadData($request->getBody());
+            
+            if ($registerModel->validate() && $registerModel->register()) {
+                return "Success";
+            }
+
+            // We can change the layout for the view only,
+            // after hitting the submit button.
+            $this->setLayout("auth");
+            return $this->render("register", [
+                "model" => $registerModel
+            ]);
+        }
+
+        $this->setLayout("auth");
+        return $this->render("register", [
+            "model" => $registerModel
+        ]);
+    }
 }
