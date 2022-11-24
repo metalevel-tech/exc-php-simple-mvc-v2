@@ -33,6 +33,11 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 * Forms
 * Validation
 
+### Stage 3
+
+* Database connection
+* Migration
+
 ## PHP Hints
 
 You can run the PHP built-in web server by `php -S localhost:8000`.
