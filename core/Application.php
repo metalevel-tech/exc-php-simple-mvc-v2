@@ -19,13 +19,15 @@ class Application
     public Response $response;
     public static Application $app;
     public Controller $controller;
+    public Database $db;
 
     /**
-     * __construct
-     *
-     * @return void
+     * Summary of __construct
+     * @param string $rootPath
+     * @param array $config (could contains much more config data than just the database)
+     * @return Application
      */
-    public function __construct($rootPath)
+    public function __construct(string $rootPath, array $config)
     {
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
@@ -33,21 +35,21 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
+
+        $this->db = new Database($config["db"]);
     }
 
     /**
-     * run
-     *
+     * Summary of run
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         echo $this->router->resolve();
     }
 
     /**
-     * getController
-     *
+     * Summary of getController
      * @return Controller
      */
     public function getController(): Controller
@@ -56,8 +58,7 @@ class Application
     }
 
     /**
-     * setController
-     *
+     * Summary of setController
      * @param  Controller $controller
      * @return void
      */

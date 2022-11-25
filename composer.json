@@ -9,7 +9,9 @@
             "email": "spas.z.spasov@metalevel.tech"
         }
     ],
-    "require": {},
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    },
     "autoload": {
         "psr-4": {
             "app\\": "./"

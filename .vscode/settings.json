@@ -42,7 +42,12 @@
     "Lindevs",
     "CreatifWerks",
     "Jakub",
-    "Míšek"
+    "Míšek",
+    "dotenv",
+    "autoloader",
+    "dbname",
+    "INNODB",
+    "TINYINT"
   ],
   "cSpell.words": [
     "async",
@@ -89,12 +94,19 @@
     "Wiki",
     "YouTube",
     "Jakub",
-    "Míšek"
+    "Míšek",
+    "dotenv",
+    "autoloader",
+    "dbname",
+    "INNODB",
+    "TINYINT"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],
   "files.exclude": {
     "**/node_modules": true
   },
-  "vsicons.presets.angular": true
+  "vsicons.presets.angular": true,
+  "phpmd.rules": "cleancode,codesize,controversial,design,unusedcode",
+  "phpmd.enabled": false
 }
