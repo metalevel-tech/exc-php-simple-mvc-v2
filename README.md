@@ -67,6 +67,8 @@ Covered topics:
 
 * Registration
 * Password encryption
+* Set the user's status
+* Register only users with unique email
 * Sessions
 
 Related lessons and resources:
