@@ -16,14 +16,17 @@ use app\core\Application;
 use app\controllers\SiteController;
 use app\controllers\AuthController;
 
- // Load the autoloader
-require_once __DIR__ . "/../vendor/autoload.php";
+// Get the root path of the application
+$rootPath = dirname(__DIR__);
+
+// Load the autoloader, provided by Composer
+require_once "$rootPath/vendor/autoload.php";
 
 // Load environment variables from .env file,
 // and make them available as $_ENV['name'] or $_SERVER['name'],
 // where 'name' is the name of the variable.
 // https://github.com/vlucas/phpdotenv
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv = Dotenv\Dotenv::createImmutable($rootPath);
 $dotenv->load();
 
 // Create a $config array, which will be passed to the Application class.
@@ -36,8 +39,6 @@ $config = [
         "password" => $_ENV["DB_PASSWORD"],
     ]
 ];
-
-$rootPath = dirname(__DIR__);
 
 $app = new Application($rootPath, $config);
 

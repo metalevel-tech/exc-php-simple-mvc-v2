@@ -46,7 +46,8 @@
     "dotenv",
     "autoloader",
     "dbname",
-    "INNODB"
+    "INNODB",
+    "TINYINT"
   ],
   "cSpell.words": [
     "async",
@@ -97,7 +98,8 @@
     "dotenv",
     "autoloader",
     "dbname",
-    "INNODB"
+    "INNODB",
+    "TINYINT"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],

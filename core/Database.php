@@ -29,8 +29,6 @@ class Database
         $user = $config["user"] ?? "";
         $password = $config["password"] ?? "";
 
-        echo "dsn: $dsn,<br> user: $user,<br> password: $password";
-
         // The data of these variables will be extracted from the .env file
         $this->pdo = new \PDO($dsn, $user, $password);
 
@@ -42,6 +40,33 @@ class Database
     {
         $this->createMigrationsTable();
         $appliedMigrations = $this->getAppliedMigrations();
+        $files = scandir(Application::$ROOT_DIR . "/migrations");
+        $migrationsToApply = array_diff($files, $appliedMigrations);
+        $newMigrations = [];
+
+        foreach ($migrationsToApply as $migration) {
+            if ($migration === "." || $migration === "..") {
+                continue;
+            }
+
+            require_once Application::$ROOT_DIR . "/migrations/$migration";
+
+            // In this case pathinfo() will return the filename without the extension.
+            $className = pathinfo($migration, PATHINFO_FILENAME);
+            $instance = new $className();
+
+            $this->log("Applying migration $migration");
+            $instance->up();
+            $this->log("Applied! migration $migration");
+
+            $newMigrations[] = $migration;
+        }
+
+        if (!empty($newMigrations)) {
+            $this->saveMigrations($newMigrations);
+        } else {
+            $this->log("All migrations are already applied!");
+        }
     }
 
     public function createMigrationsTable(): void
@@ -55,7 +80,8 @@ class Database
 
     /**
      * Summary of getAppliedMigrations
-     * Return single dimensional array with the entries of the migration column from the migrations table
+     * Return single dimensional array with the entries 
+     * of the migration column from the migrations table.
      * @return array
      */
     public function getAppliedMigrations(): array
@@ -64,5 +90,28 @@ class Database
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_COLUMN);
+    }
+
+    /**
+     * Summary of saveMigrations
+     * @param array $migrations
+     * @return void
+     */
+    public function saveMigrations(array $migrations): void
+    {
+        // Here we will save data only to the 'migration' column,
+        // because the 'created_at' and 'id' will be automatically taken
+        // for this table - see the `createMigrationsTable()` method above.
+        
+        $migrations = array_map(fn($migration) => "('$migration')", $migrations);
+        $migrations = implode(",", $migrations);
+
+        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES $migrations");
+        $statement->execute();
+    }
+
+    protected function log(string $message): void
+    {
+        echo "[" . date("Y-m-d H:i:s") . "] - $message" . PHP_EOL;
     }
 }
