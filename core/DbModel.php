@@ -16,6 +16,10 @@ use PDOStatement;
 abstract class DbModel extends Model
 {
     abstract public function tableName(): string;
+    
+    // Much proper way is to create a Schema table 
+    // and read the properties from there... https://youtu.be/nikoPDqTvKI?t=293
+    // Here is used the easiest way :) So this method should return all database's colum names.
     abstract public function attributes(): array;
 
     public function save(): bool
@@ -23,7 +27,9 @@ abstract class DbModel extends Model
         try {
             $tableName = $this->tableName();
             $attributes = $this->attributes();
-            $params = array_map(fn($attr) => ":$attr", $attributes);
+
+            // https://youtu.be/nikoPDqTvKI?t=754
+            $params = array_map(fn($attribute) => ":$attribute", $attributes);
     
             $statement = self::prepare("
                 INSERT INTO $tableName (" . implode(",", $attributes) . ")
@@ -37,8 +43,8 @@ abstract class DbModel extends Model
             $statement->execute();
     
             return true;
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
+        } catch (\PDOException $err) {
+            echo $err->getMessage();
             return false;
         }
     }

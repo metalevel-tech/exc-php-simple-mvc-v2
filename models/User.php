@@ -36,21 +36,20 @@ class User extends DbModel
     }
 
     /**
-     * Summary of attributes
-     * @return array
-     */
-    public function attributes(): array
-    {
-        return ['firstName', 'lastName', 'email', 'password', 'status'];
-    }
-
-    /**
-     * Summary of register
+     * Summary of save
+     * 
+     * Here we manipulate the input data and then 
+     * call the parent class 'save()' method, 
+     * which returns bool.
+     * Ref: https://youtu.be/nikoPDqTvKI?t=960
+     * 
+     * @return bool
      */
     public function save(): bool
     {
         $this->status = self::STATUS_INACTIVE;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+
         return parent::save();
     }
     
@@ -77,5 +76,14 @@ class User extends DbModel
                 [self::RULE_MATCH, "match" => "password"]
             ]
         ];
+    }
+
+    /**
+     * Summary of attributes
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return ["firstName", "lastName", "email", "password", "status"];
     }
 }
