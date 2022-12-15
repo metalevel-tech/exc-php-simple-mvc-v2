@@ -51,6 +51,7 @@ abstract class DbModel extends Model
 
     public static function prepare($sql): PDOStatement|false
     {
-        return Application::$app->db->pdo->prepare($sql);
+        // return Application::$app->db->pdo->prepare($sql);
+        return Application::$app->db->prepare($sql);
     }
 }

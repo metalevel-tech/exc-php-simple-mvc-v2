@@ -64,7 +64,8 @@ class User extends DbModel
             "lastName" => [self::RULE_REQUIRED],
             "email" => [
                 self::RULE_REQUIRED,
-                self::RULE_EMAIL
+                self::RULE_EMAIL,
+                [self::RULE_UNIQUE, "class" => self::class]
             ],
             "password" => [
                 self::RULE_REQUIRED,

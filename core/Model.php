@@ -93,13 +93,31 @@ abstract class Model
                     $this->addError($attribute, self::RULE_MAX, $rule);
                 }
 
-                // The RULE_MATCH is assigned to the confirmPassword field (see RegisterModel.php),
+                // The RULE_MATCH is assigned to the confirmPassword field (see User.php),
                 // so we need to check if the value of the confirmPassword field is equal to 
                 // the value of the password field, which name is defined in $this->{$rule['match']},
                 // where $rule is 'confirmPassword' and $rule['match'] is 'password'.
-                // See RegisterModel.php and watch https://youtu.be/ZSYhQkM5VIM?t=1751
+                // See User.php and watch https://youtu.be/ZSYhQkM5VIM?t=1751
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addError($attribute, self::RULE_MATCH, $rule);
+                }
+
+                // The RULE_UNIQUE is assigned to the email field (see User.php),
+                // so we need to check if the value of the email field is unique in the database.
+                // See User.php and watch https://youtu.be/nikoPDqTvKI?t=1260
+                if ($ruleName === self::RULE_UNIQUE) {
+                    $className = $rule['class'];
+                    $uniqueAttribute = $rule['attribute'] ?? $attribute;
+                    $tableName = $className::tableName();
+                    $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttribute = :attribute");
+                    $statement->bindValue(":attribute", $value);
+                    $statement->execute();
+                    $record = $statement->fetchObject();
+
+                    if ($record) {
+                        $this->addError($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
+                    }
+                    
                 }
             }
         }
