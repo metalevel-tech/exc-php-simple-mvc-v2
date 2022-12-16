@@ -22,4 +22,14 @@ class Response
     {
         http_response_code($code);
     }
+
+    /**
+     * Summary of redirect
+     * @param string $url
+     * @return void
+     */
+    public function redirect(string $url): void
+    {
+        header("Location: $url");
+    }
 }

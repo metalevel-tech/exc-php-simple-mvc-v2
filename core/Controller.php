@@ -21,7 +21,7 @@ class Controller
      * @param  string $layout
      * @return void
      */
-    public function setLayout(string $layout)
+    public function setLayout(string $layout): void
     {
         $this->layout = $layout;
     }
@@ -33,7 +33,7 @@ class Controller
      * @param  array $params
      * @return string
      */
-    public function render(string $view, array $params = [])
+    public function render(string $view, array $params = []): string
     {
         return Application::$app->router->renderView($view, $params);
     }

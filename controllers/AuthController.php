@@ -11,6 +11,7 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\models\LoginModel;
@@ -63,7 +64,10 @@ class AuthController extends Controller
             $user->loadData($request->getBody());
             
             if ($user->validate() && $user->save()) {
-                return "Success";
+                // return "Success";
+                // https://youtu.be/nikoPDqTvKI?t=1675
+                // header("Location: /");
+                Application::$app->response->redirect("/");
             }
 
             // We can change the layout for the view only,
