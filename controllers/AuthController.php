@@ -64,7 +64,11 @@ class AuthController extends Controller
             $user->loadData($request->getBody());
             
             if ($user->validate() && $user->save()) {
-                // return "Success";
+                // Set a success flash message
+                // https://youtu.be/nikoPDqTvKI?t=2200
+                Application::$app->session->setFlash('success', 'Thank you for the registering!');
+                
+                // Redirect to the home page
                 // https://youtu.be/nikoPDqTvKI?t=1675
                 // header("Location: /");
                 Application::$app->response->redirect("/");
