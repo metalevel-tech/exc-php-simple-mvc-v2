@@ -29,11 +29,6 @@ abstract class Model
     public const RULE_MATCH = 'match';
     public const RULE_UNIQUE = 'unique';
 
-    // An array where we will be stored
-    // the errors of the form fields validation.
-    public array $errors = [];
-    
-        
     /**
      * loadData
      *
@@ -44,7 +39,7 @@ abstract class Model
     {
         // Iterate through the data array,
         // check does the key exists in the $this class
-        // (i.e. RegisterModel extends Model) and,
+        // (i.e. User extends Model) and,
         // if it does, assign the value to the property.
         foreach ($data as $key => $value) {
             if (property_exists($this, $key)) {
@@ -60,6 +55,29 @@ abstract class Model
      */
     abstract public function rules(): array;
     
+
+    /**
+     * Summary of labels
+     * 
+     * Ref: https://youtu.be/nikoPDqTvKI?t=2800
+     * 
+     * @return array
+     */
+    public function labels(): array
+    {
+        return [];
+    }
+
+
+    public function getLabel(string $attribute): string
+    {
+        return $this->labels()[$attribute] ?? $attribute;
+    }
+
+    // An array where we will be stored
+    // the errors of the form fields validation.
+    public array $errors = [];    
+
     /**
      * validate
      *
@@ -99,6 +117,9 @@ abstract class Model
                 // where $rule is 'confirmPassword' and $rule['match'] is 'password'.
                 // See User.php and watch https://youtu.be/ZSYhQkM5VIM?t=1751
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
+                    // Ref: https://youtu.be/nikoPDqTvKI?t=3220
+                    // $rule['match'] = $this->labels()[$rule['match']];
+                    $rule['match'] = $this->getLabel($rule['match']);
                     $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
 
@@ -115,7 +136,8 @@ abstract class Model
                     $record = $statement->fetchObject();
 
                     if ($record) {
-                        $this->addError($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
+                        // $this->addError($attribute, self::RULE_UNIQUE, ['field' => $this->labels()[$attribute]]);
+                        $this->addError($attribute, self::RULE_UNIQUE, ['field' => $this->getLabel($attribute)]);
                     }
                     
                 }

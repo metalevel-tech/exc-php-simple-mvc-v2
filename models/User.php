@@ -18,7 +18,7 @@ class User extends DbModel
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_DELETED = 2;
-    
+
     public string $firstName = '';
     public string $lastName = '';
     public string $email = '';
@@ -52,7 +52,7 @@ class User extends DbModel
 
         return parent::save();
     }
-    
+
     /**
      * Summary of rules
      * @return array
@@ -81,10 +81,37 @@ class User extends DbModel
 
     /**
      * Summary of attributes
+     * 
+     * Override the 'abstract attributes()[]' defined in DbModel.php
+     * 
      * @return array
      */
     public function attributes(): array
     {
-        return ["firstName", "lastName", "email", "password", "status"];
+        return [
+            "firstName",
+            "lastName",
+            "email",
+            "password",
+            "status"
+        ];
+    }
+
+    /**
+     * Summary of labels
+     * 
+     * Override the default empty 'labels()[]' defined in Model.php
+     * 
+     * @return array
+     */
+    public function labels(): array
+    {
+        return [
+            "firstName" => "First name",
+            "lastName" => "Last name",
+            "email" => "Your e-mail",
+            "password" => "Password",
+            "confirmPassword" => "Confirm password"
+        ];
     }
 }

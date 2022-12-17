@@ -47,7 +47,8 @@
     "autoloader",
     "dbname",
     "INNODB",
-    "TINYINT"
+    "TINYINT",
+    "mysql"
   ],
   "cSpell.words": [
     "async",
@@ -99,7 +100,8 @@
     "autoloader",
     "dbname",
     "INNODB",
-    "TINYINT"
+    "TINYINT",
+    "mysql"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],
