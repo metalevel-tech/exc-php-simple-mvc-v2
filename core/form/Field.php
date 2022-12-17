@@ -50,7 +50,7 @@ class Field
                 </div>
             </div>
             ',
-            self::cleanLabel($this->attribute),
+            $this->cleanLabel($this->attribute),
             $this->type,
             $this->attribute,
             $this->model->{$this->attribute},

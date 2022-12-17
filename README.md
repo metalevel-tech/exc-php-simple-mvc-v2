@@ -69,7 +69,7 @@ Covered topics:
 * Password encryption
 * Set the user's status
 * Register only users with unique email
-* Sessions
+* Sessions!
 
 Related lessons and resources:
 
