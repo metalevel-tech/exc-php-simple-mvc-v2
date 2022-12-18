@@ -106,8 +106,20 @@ class Database
         $migrations = array_map(fn($migration) => "('$migration')", $migrations);
         $migrations = implode(",", $migrations);
 
-        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES $migrations");
+        // $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES $migrations");
+        $statement = $this->prepare("INSERT INTO migrations (migration) VALUES $migrations");
+
         $statement->execute();
+    }
+
+    /**
+     * Summary of prepare
+     * @param string $sql
+     * @return \PDOStatement
+     */
+    public function prepare(string $sql): \PDOStatement
+    {
+        return $this->pdo->prepare($sql);
     }
 
     protected function log(string $message): void

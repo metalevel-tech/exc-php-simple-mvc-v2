@@ -53,6 +53,7 @@ class Router
 
     /**
      * Summary of resolve
+     * 
      * @var string $path
      * @var string $method
      * @var mixed $callback
@@ -79,6 +80,7 @@ class Router
             Application::$app->controller = new $callback[0]();
             $callback[0] = Application::$app->controller;
         }
+
         // https://www.php.net/manual/en/function.call-user-func.php
         return call_user_func($callback, $this->request);
     }
@@ -104,9 +106,9 @@ class Router
      * it renders (HTML text) $viewContent directly.
      * 
      * @param string $viewContent
-     * @return array|string
+     * @return string
      */
-    public function renderContent(string $viewContent)
+    public function renderContent(string $viewContent): string
     {
         $layoutContent = $this->layoutContent();
         return str_replace("{{content}}", $viewContent, $layoutContent);

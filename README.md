@@ -61,15 +61,23 @@ Related lessons and resources:
 * [PHP dotenv at GitHub](https://github.com/vlucas/phpdotenv) | [PHP dotenv instructions from the main guide](https://youtu.be/Fnc-KUXjNFU?t=660)
 * [Create MySQL database](#create-mysql-database)
 
+### Stage 4
+
+Covered topics:
+
+* Registration
+* Password encryption
+* Set the user's status
+* Register only users with unique email
+* Sessions!
+
+Related lessons and resources:
+
+* [Registration, Password Encryption, Sessions - Part 4 | PHP MVC Framework from Scratch](https://youtu.be/nikoPDqTvKI)
+
 ## PHP Hints
 
 You can run the PHP built-in web server by `php -S localhost:8000`.
-
-Dup variables in PHP:
-
-```php
-echo '<pre>'; var_dump($position); echo '</pre>'; exit;
-```
 
 ## Autoload classes by the help of Composer
 

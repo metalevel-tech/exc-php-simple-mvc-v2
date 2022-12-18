@@ -12,10 +12,6 @@ if (true) {
     error_reporting(E_ALL);
 }
 
-use app\core\Application;
-use app\controllers\SiteController;
-use app\controllers\AuthController;
-
 // Get the root path of the application
 $rootPath = dirname(__DIR__);
 
@@ -39,6 +35,13 @@ $config = [
         "password" => $_ENV["DB_PASSWORD"],
     ]
 ];
+
+/**
+ * Prepare and run the Application
+ */
+use app\core\Application;
+use app\controllers\SiteController;
+use app\controllers\AuthController;
 
 $app = new Application($rootPath, $config);
 

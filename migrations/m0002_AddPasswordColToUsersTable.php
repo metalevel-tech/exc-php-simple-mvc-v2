@@ -12,15 +12,15 @@ class m0002_AddPasswordColToUsersTable {
     public function up(): void
     {
         $db = \app\core\Application::$app->db;
-        $SQL = "ALTER TABLE users ADD COLUMN password VARCHAR(512) NOT NULL;";
-        $db->pdo->exec($SQL);
+        $sql = "ALTER TABLE users ADD COLUMN password VARCHAR(512) NOT NULL;";
+        $db->pdo->exec($sql);
     }
 
     public function down(): void
     {
         $db = \app\core\Application::$app->db;
-        $SQL = "ALTER TABLE users DROP COLUMN password;";
-        $db->pdo->exec($SQL);
+        $sql = "ALTER TABLE users DROP COLUMN password;";
+        $db->pdo->exec($sql);
     }
 
 }

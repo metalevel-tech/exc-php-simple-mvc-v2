@@ -11,10 +11,11 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\models\LoginModel;
-use app\models\RegisterModel;
+use app\models\User;
 
 class AuthController extends Controller
 {
@@ -57,26 +58,33 @@ class AuthController extends Controller
      */
     public function register(Request $request): string
     {
-        $registerModel = new RegisterModel();
+        $user = new User();
 
         if ($request->isPost()) {
-            $registerModel->loadData($request->getBody());
+            $user->loadData($request->getBody());
             
-            if ($registerModel->validate() && $registerModel->register()) {
-                return "Success";
+            if ($user->validate() && $user->save()) {
+                // Set a success flash message
+                // https://youtu.be/nikoPDqTvKI?t=2200
+                Application::$app->session->setFlash('success', 'Thank you for the registering!');
+                
+                // Redirect to the home page
+                // https://youtu.be/nikoPDqTvKI?t=1675
+                // header("Location: /");
+                Application::$app->response->redirect("/");
             }
 
             // We can change the layout for the view only,
             // after hitting the submit button.
             $this->setLayout("auth");
             return $this->render("register", [
-                "model" => $registerModel
+                "model" => $user
             ]);
         }
 
         $this->setLayout("auth");
         return $this->render("register", [
-            "model" => $registerModel
+            "model" => $user
         ]);
     }
 }

@@ -19,6 +19,9 @@ use app\core\form\Form;
             <?php echo $form->field($model, 'lastName') ?>
         </div>
     </div>
+    
+    <?php echo $form->field($model, "email"); ?>
+
     <div class="row">
         <div class="col">
             <?php echo $form->field($model, "password")->passwordField(); ?>
@@ -27,7 +30,6 @@ use app\core\form\Form;
             <?php echo $form->field($model, "confirmPassword")->passwordField(); ?>
         </div>
     </div>
-    <?php echo $form->field($model, "email"); ?>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 <?php Form::end(); ?>

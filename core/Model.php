@@ -29,11 +29,6 @@ abstract class Model
     public const RULE_MATCH = 'match';
     public const RULE_UNIQUE = 'unique';
 
-    // An array where we will be stored
-    // the errors of the form fields validation.
-    public array $errors = [];
-    
-        
     /**
      * loadData
      *
@@ -44,7 +39,7 @@ abstract class Model
     {
         // Iterate through the data array,
         // check does the key exists in the $this class
-        // (i.e. RegisterModel extends Model) and,
+        // (i.e. User extends Model) and,
         // if it does, assign the value to the property.
         foreach ($data as $key => $value) {
             if (property_exists($this, $key)) {
@@ -60,6 +55,29 @@ abstract class Model
      */
     abstract public function rules(): array;
     
+
+    /**
+     * Summary of labels
+     * 
+     * Ref: https://youtu.be/nikoPDqTvKI?t=2800
+     * 
+     * @return array
+     */
+    public function labels(): array
+    {
+        return [];
+    }
+
+
+    public function getLabel(string $attribute): string
+    {
+        return $this->labels()[$attribute] ?? $attribute;
+    }
+
+    // An array where we will be stored
+    // the errors of the form fields validation.
+    public array $errors = [];    
+
     /**
      * validate
      *
@@ -93,13 +111,33 @@ abstract class Model
                     $this->addError($attribute, self::RULE_MAX, $rule);
                 }
 
-                // The RULE_MATCH is assigned to the confirmPassword field (see RegisterModel.php),
+                // The RULE_MATCH is assigned to the confirmPassword field (see User.php),
                 // so we need to check if the value of the confirmPassword field is equal to 
                 // the value of the password field, which name is defined in $this->{$rule['match']},
                 // where $rule is 'confirmPassword' and $rule['match'] is 'password'.
-                // See RegisterModel.php and watch https://youtu.be/ZSYhQkM5VIM?t=1751
+                // See User.php and watch https://youtu.be/ZSYhQkM5VIM?t=1751
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
+                    // $rule['match'] will return 'password'
+                    $rule['match'] = $this->getLabel($rule['match']);
                     $this->addError($attribute, self::RULE_MATCH, $rule);
+                }
+
+                // The RULE_UNIQUE is assigned to the email field (see User.php),
+                // so we need to check if the value of the email field is unique in the database.
+                // See User.php and watch https://youtu.be/nikoPDqTvKI?t=1260
+                if ($ruleName === self::RULE_UNIQUE) {
+                    $className = $rule['class'];
+                    $uniqueAttribute = $rule['attribute'] ?? $attribute;
+                    $tableName = $className::tableName();
+                    $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttribute = :attribute");
+                    $statement->bindValue(":attribute", $value);
+                    $statement->execute();
+                    $record = $statement->fetchObject();
+
+                    if ($record) {
+                        $this->addError($attribute, self::RULE_UNIQUE, ['field' => $this->getLabel($attribute)]);
+                    }
+                    
                 }
             }
         }
