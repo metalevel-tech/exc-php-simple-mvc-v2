@@ -39,8 +39,7 @@ class User extends DbModel
      * Summary of save
      * 
      * Here we manipulate the input data and then 
-     * call the parent class 'save()' method, 
-     * which returns bool.
+     * calling the parent class 'save()' method, which returns bool.
      * Ref: https://youtu.be/nikoPDqTvKI?t=960
      * 
      * @return bool

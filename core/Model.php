@@ -117,8 +117,7 @@ abstract class Model
                 // where $rule is 'confirmPassword' and $rule['match'] is 'password'.
                 // See User.php and watch https://youtu.be/ZSYhQkM5VIM?t=1751
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
-                    // Ref: https://youtu.be/nikoPDqTvKI?t=3220
-                    // $rule['match'] = $this->labels()[$rule['match']];
+                    // $rule['match'] will return 'password'
                     $rule['match'] = $this->getLabel($rule['match']);
                     $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
@@ -136,7 +135,6 @@ abstract class Model
                     $record = $statement->fetchObject();
 
                     if ($record) {
-                        // $this->addError($attribute, self::RULE_UNIQUE, ['field' => $this->labels()[$attribute]]);
                         $this->addError($attribute, self::RULE_UNIQUE, ['field' => $this->getLabel($attribute)]);
                     }
                     

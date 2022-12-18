@@ -17,9 +17,10 @@ class Request
      * getPath
      *
      * @param $_SERVER['REQUEST_URI']
+     * 
      * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         $position = strpos($path, '?');
@@ -34,9 +35,10 @@ class Request
      * method
      *
      * @param $_SERVER['REQUEST_METHOD']
-     * @return string
+     * 
+     * @return string 'post' or 'get', or whatever is the method
      */
-    public function method()
+    public function method(): string
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
@@ -46,7 +48,7 @@ class Request
      *
      * @return bool
      */
-    public function isGet()
+    public function isGet(): bool
     {
         return $this->method() === 'get';
     }
@@ -56,7 +58,7 @@ class Request
      *
      * @return bool
      */
-    public function isPost()
+    public function isPost(): bool
     {
         return $this->method() === 'post';
     }
@@ -66,17 +68,17 @@ class Request
      *
      * @return array $_POST or $_GET but sanitized
      */
-    public function getBody()
+    public function getBody(): array
     {
         $body = [];
 
-        if ($this->method() === "get") {
+        if ($this->isGet()) {
             foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
 
-        if ($this->method() === "post") {
+        if ($this->isPost()) {
             foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }

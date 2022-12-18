@@ -50,7 +50,6 @@ class Field
                 </div>
             </div>
             ',
-            // $this->model->labels()[$this->attribute] ?? $this->attribute,
             $this->model->getLabel($this->attribute),
             $this->type,
             $this->attribute,
@@ -68,19 +67,5 @@ class Field
     {
         $this->type = self::TYPE_PASSWORD;
         return $this;
-    }
-
-    /**
-     * Summary of cleanLabel
-     * 
-     * Deprecated -> can be removed before merge with the master branch
-     * 
-     * @param string $label
-     * @return string
-     */
-    protected function cleanLabel(string $label): string
-    {
-        $words = preg_split('/(?=[A-Z])/', $label, 0, PREG_SPLIT_NO_EMPTY);
-        return ucfirst(strtolower(implode(' ', $words)));
     }
 }
