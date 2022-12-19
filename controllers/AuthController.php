@@ -14,7 +14,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\LoginModel;
+use app\models\LoginForm;
 use app\models\User;
 
 class AuthController extends Controller
@@ -25,14 +25,15 @@ class AuthController extends Controller
      * @param  Request $request
      * @return string
      */
+    // public function login(Request $request, Response $response
     public function login(Request $request)
     {
-        $loginModel = new LoginModel();
+        $loginForm = new LoginForm();
         
         if ($request->isPost()) {
-            $loginModel->loadData($request->getBody());
+            $loginForm->loadData($request->getBody());
             
-            if ($loginModel->validate() && $loginModel->login()) {
+            if ($loginForm->validate() && $loginForm->login()) {
                 return "Success";
             }
 
@@ -40,13 +41,13 @@ class AuthController extends Controller
             // after hitting the submit button.
             $this->setLayout("auth");
             return $this->render("login", [
-                "model" => $loginModel
+                "model" => $loginForm
             ]);
         }
 
         $this->setLayout("auth");
         return $this->render("login", [
-            "model" => $loginModel
+            "model" => $loginForm
         ]);
     }
 

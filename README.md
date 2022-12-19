@@ -75,6 +75,16 @@ Related lessons and resources:
 
 * [Registration, Password Encryption, Sessions - Part 4 | PHP MVC Framework from Scratch](https://youtu.be/nikoPDqTvKI)
 
+### Stage 5
+
+Covered topics:
+
+* Log-in implementation
+
+Related lessons and resources:
+
+* [Implement login - Part 5 | PHP MVC Framework from Scratch](https://youtu.be/mtBIu9dfclY)
+
 ## PHP Hints
 
 You can run the PHP built-in web server by `php -S localhost:8000`.
