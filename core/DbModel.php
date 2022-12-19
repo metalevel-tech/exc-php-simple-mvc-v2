@@ -16,7 +16,7 @@ use PDOStatement;
 abstract class DbModel extends Model
 {
     abstract public function tableName(): string;
-    
+
     // Much proper way is to create a Schema table 
     // and read the properties from there... https://youtu.be/nikoPDqTvKI?t=293
     // Here is used the easiest way :) So this method should return all database's colum names.
@@ -30,18 +30,18 @@ abstract class DbModel extends Model
 
             // https://youtu.be/nikoPDqTvKI?t=754
             $params = array_map(fn($attribute) => ":$attribute", $attributes);
-    
+
             $statement = self::prepare("
                 INSERT INTO $tableName (" . implode(",", $attributes) . ")
                 VALUES (" . implode(",", $params) . ")
             ");
-    
+
             foreach ($attributes as $attribute) {
                 $statement->bindValue(":$attribute", $this->{$attribute});
             }
-    
+
             $statement->execute();
-    
+
             return true;
         } catch (\PDOException $err) {
             echo $err->getMessage();
@@ -78,21 +78,21 @@ abstract class DbModel extends Model
         // Note "tableName()" is defined as an abstract 
         // method in the current abstract class.
         /**
-         * Unfortunately PHP 8+: Non-static method app\models\User::tableName() cannot be called statically,
-         * and we can't define it as static, otherwise we must refactoring the rest code where it is used...
-         * so we need to create an instance ot the User class and call the method.
-         $tableName = static::tableName();
-         */
+        * Unfortunately PHP 8+: Non-static method app\models\User::tableName() cannot be called statically,
+        * and we can't define it as static, otherwise we must refactoring the rest code where it is used...
+        * so we need to create an instance ot the User class and call the method.
+        $tableName = static::tableName();
+        */
         // See the comments under the Part 5 video lesson: https://youtu.be/mtBIu9dfclY
         // In this case we are creating an instance of the relevant (User) class...
-         $tableName = (new static)->tableName();
+        $tableName = (new static ())->tableName();
 
         $attributes = array_keys($where);
-        $attrsMapped = array_map(fn($attr) => "$attr = :$attr", $attributes);  
+        $attrsMapped = array_map(fn($attr) => "$attr = :$attr", $attributes);
         $sql = "SELECT * FROM $tableName WHERE " . implode("AND ", $attrsMapped);
         $statement = self::prepare($sql);
 
-        foreach($where as $key => $value) {
+        foreach ($where as $key => $value) {
             $statement->bindValue(":$key", $value);
         }
 
