@@ -33,6 +33,7 @@ abstract class Model
      * loadData
      *
      * @param  array $data
+     * 
      * @return void
      */
     public function loadData(array $data): void

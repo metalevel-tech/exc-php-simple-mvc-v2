@@ -15,13 +15,23 @@ use PDOStatement;
 
 abstract class DbModel extends Model
 {
-    abstract public function tableName(): string;
+    public string $password; // Otherwise PHP IntelePhense complains about $user->password in LoginForm:login()
+    abstract public static function tableName(): string;
+    abstract public static function primaryKey(): string;
 
     // Much proper way is to create a Schema table 
     // and read the properties from there... https://youtu.be/nikoPDqTvKI?t=293
     // Here is used the easiest way :) So this method should return all database's colum names.
     abstract public function attributes(): array;
 
+
+    /**
+     * Summary of save
+     * 
+     * Save a new user into the users table of the database.
+     * 
+     * @return bool
+     */
     public function save(): bool
     {
         try {
@@ -69,9 +79,9 @@ abstract class DbModel extends Model
      * @var string  $sql            // "SELECT * FROM $tableName WHERE email = :email AND firstName = :firstName";
      * @var PDOStatement $statement
      *
-     * @return static::class        // return an instance of the correspondent class where the method is called.
+     * @return DbModel              // static::class - return an instance of the correspondent class where the method is called.
      */
-    public static function findOne(array $where): static
+    public static function findOne(array $where): DbModel
     {
         // In this case static::method() corresponds to 
         // the actual class where the method is defined. 
@@ -85,6 +95,8 @@ abstract class DbModel extends Model
         */
         // See the comments under the Part 5 video lesson: https://youtu.be/mtBIu9dfclY
         // In this case we are creating an instance of the relevant (User) class...
+        // > https://lindevs.com/new-static-return-type-in-php-8-0
+        // > https://php.watch/versions/8.0/static-return-type
         $tableName = (new static ())->tableName();
 
         $attributes = array_keys($where);

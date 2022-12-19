@@ -19,20 +19,32 @@ class User extends DbModel
     const STATUS_ACTIVE = 1;
     const STATUS_DELETED = 2;
 
-    public string $firstName = '';
-    public string $lastName = '';
-    public string $email = '';
+    public string $firstName = "";
+    public string $lastName = "";
+    public string $email = "";
     public int $status = self::STATUS_INACTIVE;
-    public string $password = '';
-    public string $confirmPassword = '';
+    public string $password = "";
+    public string $confirmPassword = "";
 
     /**
      * Summary of tableName
      * @return string
      */
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'users';
+    }
+
+    /**
+     * Summary of primaryKey
+     * 
+     * Return the primary key of the users table.
+     * 
+     * @return string
+     */
+    public static function primaryKey(): string
+    {
+        return "id";
     }
 
     /**

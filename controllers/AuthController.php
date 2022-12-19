@@ -14,19 +14,21 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
 use app\models\LoginForm;
 use app\models\User;
 
 class AuthController extends Controller
 {
     /**
-     * login
-     *
-     * @param  Request $request
+     * Summary of login
+     * 
+     * @param Request $request
+     * @param Response $response
+     * 
      * @return string
      */
-    // public function login(Request $request, Response $response
-    public function login(Request $request)
+    public function login(Request $request, Response $response): string
     {
         $loginForm = new LoginForm();
         
@@ -34,7 +36,8 @@ class AuthController extends Controller
             $loginForm->loadData($request->getBody());
             
             if ($loginForm->validate() && $loginForm->login()) {
-                return "Success";
+                $response->redirect("/");
+                return "Success"; // Will not be displayed!!!
             }
 
             // We can change the layout for the view only,

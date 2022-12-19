@@ -21,6 +21,9 @@ class LoginForm extends Model
     
     /**
      * Summary of login
+     * 
+     * @var User $user
+     * 
      * @return bool
      */
     public function login(): bool
@@ -28,6 +31,7 @@ class LoginForm extends Model
         // See the comments under the Part 5 video lesson: https://youtu.be/mtBIu9dfclY
         // In this case we've defined the method as static...
         $user = User::findOne(["email" => $this->email]);
+
         
         if (!$user) {
             $this->addError("email", "User with this email does not exist!");
@@ -39,15 +43,12 @@ class LoginForm extends Model
             return false;
         }
 
-        echo "<pre>";
-        echo var_dump($user);
-        echo "</pre>";
-        exit;
-        // return Application::$app->login();
+        return Application::$app->login($user);
     }
     
     /**
      * Summary of rules
+     * 
      * @return array
      */
     public function rules(): array
@@ -60,6 +61,19 @@ class LoginForm extends Model
             "password" => [
                 self::RULE_REQUIRED
             ]
+        ];
+    }
+
+    /**
+     * Summary of labels
+     * 
+     * @return array
+     */
+    public function labels(): array
+    {
+        return [
+            "email" => "Your email",
+            "password" => "Your password"
         ];
     }
 }

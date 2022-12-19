@@ -48,7 +48,8 @@
     "dbname",
     "INNODB",
     "TINYINT",
-    "mysql"
+    "mysql",
+    "IntelePhense"
   ],
   "cSpell.words": [
     "async",
@@ -101,7 +102,8 @@
     "dbname",
     "INNODB",
     "TINYINT",
-    "mysql"
+    "mysql",
+    "IntelePhense"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],
