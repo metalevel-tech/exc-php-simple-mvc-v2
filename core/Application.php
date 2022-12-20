@@ -65,6 +65,15 @@ class Application
     }
 
     /**
+     * Summary of isGuest
+     * @return bool
+     */
+    public static function isGuest(): bool
+    {
+        return !self::$app->user;
+    }
+
+    /**
      * Summary of run
      * @return void
      */

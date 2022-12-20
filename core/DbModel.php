@@ -15,7 +15,6 @@ use PDOStatement;
 
 abstract class DbModel extends Model
 {
-    public string $password; // Otherwise PHP IntelePhense complains about $user->password in LoginForm:login()
     abstract public static function tableName(): string;
     abstract public static function primaryKey(): string;
 
@@ -79,9 +78,9 @@ abstract class DbModel extends Model
      * @var string  $sql            // "SELECT * FROM $tableName WHERE email = :email AND firstName = :firstName";
      * @var PDOStatement $statement
      *
-     * @return DbModel              // static::class - return an instance of the correspondent class where the method is called.
+     * @return UserModel             // static::class - return an instance of the correspondent class where the method is called.
      */
-    public static function findOne(array $where): DbModel
+    public static function findOne(array $where): UserModel
     {
         // In this case static::method() corresponds to 
         // the actual class where the method is defined. 

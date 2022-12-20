@@ -58,4 +58,8 @@ $app->router->post("/login", [AuthController::class, "login"]);
 $app->router->get("/register", [AuthController::class, "register"]);
 $app->router->post("/register", [AuthController::class, "register"]);
 
+// For security reasons it is better to use POST, 
+// but this need to done much work on the menu.
+$app->router->get("/logout", [AuthController::class, "logout"]);
+
 $app->run();
