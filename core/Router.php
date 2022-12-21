@@ -82,7 +82,7 @@ class Router
         }
 
         // https://www.php.net/manual/en/function.call-user-func.php
-        return call_user_func($callback, $this->request);
+        return call_user_func($callback, $this->request, $this->response);
     }
 
     /**

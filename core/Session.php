@@ -15,7 +15,6 @@
  */
 
 namespace app\core;
-use OutOfBoundsException;
 
 class Session
 {
@@ -47,7 +46,7 @@ class Session
         $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
 
-    public function setFlash($key, $message): void
+    public function setFlash(string $key, string $message): void
     {
         $_SESSION[self::FLASH_KEY][$key] = [
             "remove" => false,
@@ -55,9 +54,23 @@ class Session
         ];
     }
     
-    public function getFlash($key): string|false
+    public function getFlash(string $key): string|false
     {
         return $_SESSION[self::FLASH_KEY][$key]['value'] ?? false;
     }
  
+    public function set(string $key, string $value): void
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    public function get(string $key): string|false
+    {
+        return $_SESSION[$key] ?? false;
+    }
+    
+    public function remove(string $key): void
+    {
+        unset($_SESSION[$key]);
+    }
 }

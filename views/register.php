@@ -1,9 +1,9 @@
 <?php
-// Form::begin() will output the <form> opening tag
-// and will return an instance of the Form class,
-// which we will store in the $form variable,
-// so that we can chain methods.
-// Form::end() will output the </form> closing tag
+
+/**
+ * @var $model app\models\User
+ */
+
 use app\core\form\Form;
 
 ?>

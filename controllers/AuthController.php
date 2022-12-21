@@ -14,39 +14,44 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\LoginModel;
+use app\core\Response;
+use app\models\LoginForm;
 use app\models\User;
 
 class AuthController extends Controller
 {
     /**
-     * login
-     *
-     * @param  Request $request
-     * @return string
+     * Summary of login
+     * 
+     * @param Request $request
+     * @param Response $response
+     * 
+     * @return string|bool
      */
-    public function login(Request $request)
+    public function login(Request $request, Response $response): string|bool
     {
-        $loginModel = new LoginModel();
+        $loginForm = new LoginForm();
         
         if ($request->isPost()) {
-            $loginModel->loadData($request->getBody());
+            $loginForm->loadData($request->getBody());
             
-            if ($loginModel->validate() && $loginModel->login()) {
-                return "Success";
+            if ($loginForm->validate() && $loginForm->login()) {
+                Application::$app->session->setFlash("success", "Welcome back!");
+                $response->redirect("/");
+                return true;
             }
 
             // We can change the layout for the view only,
             // after hitting the submit button.
             $this->setLayout("auth");
             return $this->render("login", [
-                "model" => $loginModel
+                "model" => $loginForm
             ]);
         }
 
         $this->setLayout("auth");
         return $this->render("login", [
-            "model" => $loginModel
+            "model" => $loginForm
         ]);
     }
 
@@ -54,9 +59,10 @@ class AuthController extends Controller
      * register
      *
      * @param  Request $request
-     * @return string
+     * 
+     * @return string|bool
      */
-    public function register(Request $request): string
+    public function register(Request $request, Response $response): string|bool
     {
         $user = new User();
 
@@ -66,12 +72,13 @@ class AuthController extends Controller
             if ($user->validate() && $user->save()) {
                 // Set a success flash message
                 // https://youtu.be/nikoPDqTvKI?t=2200
-                Application::$app->session->setFlash('success', 'Thank you for the registering!');
+                Application::$app->session->setFlash("success", "Thank you for the registering!");
                 
                 // Redirect to the home page
                 // https://youtu.be/nikoPDqTvKI?t=1675
                 // header("Location: /");
-                Application::$app->response->redirect("/");
+                $response->redirect("/");
+                return true;
             }
 
             // We can change the layout for the view only,
@@ -86,5 +93,12 @@ class AuthController extends Controller
         return $this->render("register", [
             "model" => $user
         ]);
+    }
+
+    public function logout(Request $request, Response $response): void
+    {
+        Application::$app->session->setFlash("success", "Good bye. See you later!");
+        Application::$app->logout();
+        $response->redirect("/");
     }
 }

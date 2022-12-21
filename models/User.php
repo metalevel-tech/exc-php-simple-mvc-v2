@@ -11,28 +11,40 @@
 
 namespace app\models;
 
-use app\core\DbModel;
+use app\core\UserModel;
 
-class User extends DbModel
+class User extends UserModel
 {
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_DELETED = 2;
 
-    public string $firstName = '';
-    public string $lastName = '';
-    public string $email = '';
+    public string $firstName = "";
+    public string $lastName = "";
+    public string $email = "";
     public int $status = self::STATUS_INACTIVE;
-    public string $password = '';
-    public string $confirmPassword = '';
+    public string $password = "";
+    public string $confirmPassword = "";
 
     /**
      * Summary of tableName
      * @return string
      */
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'users';
+    }
+
+    /**
+     * Summary of primaryKey
+     * 
+     * Return the primary key of the users table.
+     * 
+     * @return string
+     */
+    public static function primaryKey(): string
+    {
+        return "id";
     }
 
     /**
@@ -112,5 +124,14 @@ class User extends DbModel
             "password" => "Password",
             "confirmPassword" => "Confirm password"
         ];
+    }
+
+    /**
+     * Summary of getDisplayName
+     * @return string
+     */
+    public function getDisplayName(): string
+    {
+        return $this->firstName . ' ' . $this->lastName;
     }
 }
