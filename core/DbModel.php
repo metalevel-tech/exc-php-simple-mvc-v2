@@ -82,20 +82,19 @@ abstract class DbModel extends Model
      */
     public static function findOne(array $where): UserModel
     {
-        // In this case static::method() corresponds to 
-        // the actual class where the method is defined. 
-        // Note "tableName()" is defined as an abstract 
-        // method in the current abstract class.
         /**
-        * Unfortunately PHP 8+: Non-static method app\models\User::tableName() cannot be called statically,
-        * and we can't define it as static, otherwise we must refactoring the rest code where it is used...
-        * so we need to create an instance ot the User class and call the method.
-        $tableName = static::tableName();
+         * Unfortunately PHP 8+: Non-static method app\models\User::tableName() cannot be called statically,
+         * and we can't define it as static, otherwise we must refactoring the rest code where it is used...
+         * so we need to create an instance ot the User class and call the method.
+         $tableName = static::tableName();
+         * In this case static::method() corresponds to the actual class where the method is defined. 
+         * Note "tableName()" is defined as an abstract method in the current abstract class.
+         * 
+         * See the comments under the Part 5 video lesson: https://youtu.be/mtBIu9dfclY
+         * In this case we are creating an instance of the relevant (User) class...
+         * > https://lindevs.com/new-static-return-type-in-php-8-0
+         * > https://php.watch/versions/8.0/static-return-type
         */
-        // See the comments under the Part 5 video lesson: https://youtu.be/mtBIu9dfclY
-        // In this case we are creating an instance of the relevant (User) class...
-        // > https://lindevs.com/new-static-return-type-in-php-8-0
-        // > https://php.watch/versions/8.0/static-return-type
         $tableName = (new static ())->tableName();
 
         $attributes = array_keys($where);

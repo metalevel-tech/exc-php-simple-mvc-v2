@@ -22,7 +22,7 @@ class Application
     public Controller $controller;
     public Session $session;
     public Database $db;
-    public ? DbModel $user = null;
+    public ? UserModel $user = null;
 
     /**
      * Summary of __construct
