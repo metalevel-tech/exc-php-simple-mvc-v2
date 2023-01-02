@@ -31,10 +31,10 @@ class AuthController extends Controller
     public function login(Request $request, Response $response): string|bool
     {
         $loginForm = new LoginForm();
-        
+
         if ($request->isPost()) {
             $loginForm->loadData($request->getBody());
-            
+
             if ($loginForm->validate() && $loginForm->login()) {
                 Application::$app->session->setFlash("success", "Welcome back!");
                 $response->redirect("/");
@@ -68,12 +68,12 @@ class AuthController extends Controller
 
         if ($request->isPost()) {
             $user->loadData($request->getBody());
-            
+
             if ($user->validate() && $user->save()) {
                 // Set a success flash message
                 // https://youtu.be/nikoPDqTvKI?t=2200
                 Application::$app->session->setFlash("success", "Thank you for the registering!");
-                
+
                 // Redirect to the home page
                 // https://youtu.be/nikoPDqTvKI?t=1675
                 // header("Location: /");
@@ -100,5 +100,14 @@ class AuthController extends Controller
         Application::$app->session->setFlash("success", "Good bye. See you later!");
         Application::$app->logout();
         $response->redirect("/");
+    }
+
+    public function profile(): string
+    {
+        $params = [
+            "name" => Application::$app->user ? Application::$app->user->getDisplayName() : "Anonymous"
+        ];
+
+        return $this->render("profile", $params);
     }
 }

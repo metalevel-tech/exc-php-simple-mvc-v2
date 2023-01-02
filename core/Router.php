@@ -121,7 +121,13 @@ class Router
      */
     protected function layoutContent(): string
     {
-        $layout = Application::$app->controller->layout;
+        // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
+        $layout = Application::$app->layout;
+        
+        // Or if $controller exist get the layout from the controller.
+        if (Application::$app->controller) {
+            $layout = Application::$app->controller->layout;
+        }
 
         ob_start();             // Start caching buffer, so nothing will be output to the browser
         include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
