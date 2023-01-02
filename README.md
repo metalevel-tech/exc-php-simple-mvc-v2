@@ -90,7 +90,7 @@ Related lessons and resources:
 Covered topics:
 
 * Restricted access on routes (protected pages)
-* Implement and improve an error and exceptions system.
+* Implement and improve an errors and exceptions system.
 * [Middlewares](https://en.wikipedia.org/wiki/Middleware) in this scenario is a special class which leaves between the request and the controller.
 
 Related lessons and resources:

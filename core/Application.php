@@ -14,7 +14,7 @@ namespace app\core;
 class Application
 {
     public static string $ROOT_DIR;
-    public string $layout = "main";         // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
+    public string $layout = "main"; // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
     public static Application $app;
     public string $userClass;
     public Router $router;
@@ -80,7 +80,14 @@ class Application
      */
     public function run(): void
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $error) {
+            $this->response->setStatusCode($error->getCode());
+            echo $this->router->renderView("_error", [
+                "exception" => $error
+            ]);
+        }
     }
 
     /**

@@ -10,6 +10,7 @@
  */
 
 namespace app\core;
+use app\core\exceptions\NotFoundException;
 
 class Router
 {
@@ -67,8 +68,10 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
-            $this->response->setStatusCode(404);
-            return $this->renderView("_HTTP404");
+            // Moved to Application::run()
+            // $this->response->setStatusCode(404);
+            // return $this->renderView("_HTTP404");
+            throw new NotFoundException();
         }
 
         if (is_string($callback)) {
