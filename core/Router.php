@@ -68,9 +68,6 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
-            // > Moved to Application::run()
-            // $this->response->setStatusCode(404);
-            // return $this->renderView("_HTTP404");
             throw new NotFoundException();
         }
 
