@@ -77,8 +77,20 @@ class Router
         }
 
         if (is_array($callback)) {
-            Application::$app->controller = new $callback[0]();
+            // We need this annotation, otherwise the IDE doesn't know 
+            // instance of which class is the $controller var... 
+            // see the foreach() below... https://youtu.be/BHuXI5JE9Qo?t=970
+
+            /** @var \app\core\Controller $controller */
+            $controller =  new $callback[0]();
+
+            Application::$app->controller = $controller;
+            $controller->action = $callback[1]; // See the second argument in index.php...
             $callback[0] = Application::$app->controller;
+
+            foreach ($controller->getMiddlewares() as $middleware) {
+                $middleware->execute();
+            }
         }
 
         // https://www.php.net/manual/en/function.call-user-func.php

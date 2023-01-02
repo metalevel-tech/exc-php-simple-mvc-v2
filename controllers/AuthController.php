@@ -13,6 +13,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
@@ -20,6 +21,16 @@ use app\models\User;
 
 class AuthController extends Controller
 {
+
+    public function __construct()
+    {
+        // Restrict access to the whole controller
+        // $this->registerMiddleware(new AuthMiddleware());
+        
+        // Restrict the access to an array of actions of this controller
+        $this->registerMiddleware(new AuthMiddleware(["profile"]));
+    }
+
     /**
      * Summary of login
      * 
