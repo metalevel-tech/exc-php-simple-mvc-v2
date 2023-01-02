@@ -37,39 +37,41 @@ use app\core\Application;
                     </li>
                 </ul>
                 <?php if (Application::isGuest()): ?>
-                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Sign up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Log in</a>
-                    </li>
-                </ul>
-                <?php else: ?>
-                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <span class="nav-link">
-                            Hello <?php echo Application::$app->user->getDisplayName(); ?>
-                            <a href="/logout">Log out</a>
+                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Log in</a>
+                        </li>
+                    </ul>
+                    <?php else: ?>
+                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link">
+                                Hello <?php echo Application::$app->user->getDisplayName(); ?>
+                                <a href="/logout">Log out</a>
 
-                            <!-- <form action="/logout" method="post">
-                                <input type="submit" value="Log out" />
-                            </form> -->
-                        </span>
-                    </li>
-                </ul>
-                <?php endif; ?>
+                                <!-- <form action="/logout" method="post">
+                                                        <input type="submit" value="Log out" />
+                                                    </form> -->
+                            </span>
+                        </li>
+                    </ul>
+                    <?php endif; ?>
             </div>
         </div>
     </nav>
 
     <div class="container mt-5">
-        <?php /* Display the flash messages */
-        if (Application::$app->session->getFlash('success')): ?>
-        <div class="alert alert-success">
-            <?php echo Application::$app->session->getFlash('success'); ?>
-        </div>
-        <?php endif; ?>
+        <?php if (Application::$app->session->getFlash('success')): /* Display the flash messages */?>
+            <div class="alert alert-success">
+                <?php echo Application::$app->session->getFlash('success'); ?>
+            </div>
+            <?php endif; ?>
 
         {{content}}
     </div>

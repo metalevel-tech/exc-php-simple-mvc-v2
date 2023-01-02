@@ -10,6 +10,7 @@
  */
 
 namespace app\core;
+use app\core\exceptions\NotFoundException;
 
 class Router
 {
@@ -67,8 +68,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
-            $this->response->setStatusCode(404);
-            return $this->renderView("_HTTP404");
+            throw new NotFoundException();
         }
 
         if (is_string($callback)) {
@@ -77,8 +77,20 @@ class Router
         }
 
         if (is_array($callback)) {
-            Application::$app->controller = new $callback[0]();
+            // We need this annotation, otherwise the IDE doesn't know 
+            // instance of which class is the $controller var... 
+            // see the foreach() below... https://youtu.be/BHuXI5JE9Qo?t=970
+
+            /** @var \app\core\Controller $controller */
+            $controller =  new $callback[0]();
+
+            Application::$app->controller = $controller;
+            $controller->action = $callback[1]; // See the second argument in index.php...
             $callback[0] = Application::$app->controller;
+
+            foreach ($controller->getMiddlewares() as $middleware) {
+                $middleware->execute();
+            }
         }
 
         // https://www.php.net/manual/en/function.call-user-func.php
@@ -121,7 +133,13 @@ class Router
      */
     protected function layoutContent(): string
     {
-        $layout = Application::$app->controller->layout;
+        // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
+        $layout = Application::$app->layout;
+        
+        // Or if $controller exist get the layout from the controller.
+        if (Application::$app->controller) {
+            $layout = Application::$app->controller->layout;
+        }
 
         ob_start();             // Start caching buffer, so nothing will be output to the browser
         include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";

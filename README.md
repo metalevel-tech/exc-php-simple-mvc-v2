@@ -85,6 +85,18 @@ Related lessons and resources:
 
 * [Implement login - Part 5 | PHP MVC Framework from Scratch](https://youtu.be/mtBIu9dfclY)
 
+### Stage 6
+
+Covered topics:
+
+* Restricted access on routes (protected pages)
+* Implement and improve an errors and exceptions system.
+* [Middlewares](https://en.wikipedia.org/wiki/Middleware) in this scenario is a special class which leaves between the request and the controller.
+
+Related lessons and resources:
+
+* [Restricted access on routes, Middlewares - Part 6 | PHP MVC Framework from Scratch](https://youtu.be/BHuXI5JE9Qo)
+
 ## PHP Hints
 
 You can run the PHP built-in web server by `php -S localhost:8000`.
