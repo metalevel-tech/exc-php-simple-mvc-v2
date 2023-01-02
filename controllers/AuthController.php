@@ -13,6 +13,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
@@ -20,6 +21,16 @@ use app\models\User;
 
 class AuthController extends Controller
 {
+
+    public function __construct()
+    {
+        // Restrict access to the whole controller
+        // $this->registerMiddleware(new AuthMiddleware());
+        
+        // Restrict the access to an array of actions of this controller
+        $this->registerMiddleware(new AuthMiddleware(["profile"]));
+    }
+
     /**
      * Summary of login
      * 
@@ -31,10 +42,10 @@ class AuthController extends Controller
     public function login(Request $request, Response $response): string|bool
     {
         $loginForm = new LoginForm();
-        
+
         if ($request->isPost()) {
             $loginForm->loadData($request->getBody());
-            
+
             if ($loginForm->validate() && $loginForm->login()) {
                 Application::$app->session->setFlash("success", "Welcome back!");
                 $response->redirect("/");
@@ -68,12 +79,12 @@ class AuthController extends Controller
 
         if ($request->isPost()) {
             $user->loadData($request->getBody());
-            
+
             if ($user->validate() && $user->save()) {
                 // Set a success flash message
                 // https://youtu.be/nikoPDqTvKI?t=2200
                 Application::$app->session->setFlash("success", "Thank you for the registering!");
-                
+
                 // Redirect to the home page
                 // https://youtu.be/nikoPDqTvKI?t=1675
                 // header("Location: /");
@@ -100,5 +111,14 @@ class AuthController extends Controller
         Application::$app->session->setFlash("success", "Good bye. See you later!");
         Application::$app->logout();
         $response->redirect("/");
+    }
+
+    public function profile(): string
+    {
+        $params = [
+            "user" => Application::$app->user ?? false
+        ];
+
+        return $this->render("profile", $params);
     }
 }

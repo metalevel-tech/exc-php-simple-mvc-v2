@@ -14,12 +14,13 @@ namespace app\core;
 class Application
 {
     public static string $ROOT_DIR;
+    public string $layout = "main"; // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
     public static Application $app;
     public string $userClass;
     public Router $router;
     public Request $request;
     public Response $response;
-    public Controller $controller;
+    public ? Controller $controller = null; // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
     public Session $session;
     public Database $db;
     public ? UserModel $user = null;
@@ -55,7 +56,7 @@ class Application
 
         if ($primaryValue) {
             // $primaryKey = (new $this->userClass())->primaryKey(); // for non-static method
-            $primaryKey = $this->userClass::primaryKey(); 
+            $primaryKey = $this->userClass::primaryKey();
             $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
         } else {
             // This is not needed because the default value in the declaration above,
@@ -79,7 +80,14 @@ class Application
      */
     public function run(): void
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $error) {
+            $this->response->setStatusCode($error->getCode());
+            echo $this->router->renderView("_error", [
+                "exception" => $error
+            ]);
+        }
     }
 
     /**

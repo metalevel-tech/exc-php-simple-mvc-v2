@@ -62,4 +62,6 @@ $app->router->post("/register", [AuthController::class, "register"]);
 // but this need to done much work on the menu.
 $app->router->get("/logout", [AuthController::class, "logout"]);
 
+$app->router->get("/profile", [AuthController::class, "profile"]);
+
 $app->run();

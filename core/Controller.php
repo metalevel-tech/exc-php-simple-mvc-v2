@@ -10,10 +10,18 @@
  */
 
 namespace app\core;
+use app\core\middlewares\BaseMiddleware;
 
 class Controller
 {
     public string $layout = "main";
+    public string $action = "";
+
+    /**
+     * Summary of middlewares
+     * @var \app\core\middlewares\BaseMiddleware[]
+     */
+    protected array $middlewares = [];
 
     /**
      * setLayout
@@ -30,11 +38,31 @@ class Controller
      * render
      *
      * @param  string $view
-     * @param  array $params
+     * @param  array $params // Default empty array is important
      * @return string
      */
     public function render(string $view, array $params = []): string
     {
         return Application::$app->router->renderView($view, $params);
+    }
+
+    /**
+     * Summary of registerMiddleware
+     * @param BaseMiddleware $middleware
+     * @return void
+     */
+    public function registerMiddleware(BaseMiddleware $middleware): void
+    {
+        $this->middlewares[] = $middleware;
+    }
+
+    /**
+     * Get summary of middlewares
+     *
+     * @return  \app\core\middlewares\BaseMiddleware[]
+     */ 
+    public function getMiddlewares(): array
+    {
+        return $this->middlewares;
     }
 }
