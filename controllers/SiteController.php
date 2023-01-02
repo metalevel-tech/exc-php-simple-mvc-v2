@@ -24,7 +24,7 @@ class SiteController extends Controller
     public function home()
     {
         $params = [
-            "name" => "PHP Simple MVC Framework",
+            "projectName" => "PHP Simple MVC Framework",
         ];
 
         return $this->render("home", $params);

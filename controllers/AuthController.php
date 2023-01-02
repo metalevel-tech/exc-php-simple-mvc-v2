@@ -116,7 +116,7 @@ class AuthController extends Controller
     public function profile(): string
     {
         $params = [
-            "name" => Application::$app->user ? Application::$app->user->getDisplayName() : "Anonymous"
+            "user" => Application::$app->user ?? false
         ];
 
         return $this->render("profile", $params);
