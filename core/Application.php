@@ -23,7 +23,9 @@ class Application
     public ? Controller $controller = null; // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
     public Session $session;
     public Database $db;
-    public ? UserModel $user = null;
+    public View $view;
+    public ? DbModel $user = null;
+    // public ? UserModel $user = null;
 
     /**
      * Summary of __construct
@@ -50,6 +52,7 @@ class Application
 
         $this->db = new Database($config["db"]);
 
+        $this->view = new View();
 
         // With the following approach we should be able to fetch the user when navigating between the pages.
         $primaryValue = $this->session->get("user");
