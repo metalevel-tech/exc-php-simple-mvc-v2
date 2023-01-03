@@ -1,8 +1,10 @@
 <?php
-
 /**
- * @var $model app\models\User
+ * @var \app\models\User $model
+ * @var \app\core\View $this 
  */
+
+ $this->title = "Login";
 
 use app\core\form\Form;
 

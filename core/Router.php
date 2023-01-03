@@ -96,20 +96,4 @@ class Router
         // https://www.php.net/manual/en/function.call-user-func.php
         return call_user_func($callback, $this->request, $this->response);
     }
-
-    // /**
-    //  * Summary of renderView
-    //  * 
-    //  * Because we've moved all these methods in View class,
-    //  * in case we do not want to rebuild the rest of the code right now
-    //  * we can link the methods like this.
-    //  * 
-    //  * @param string $view
-    //  * @param array $params
-    //  * @return string
-    //  */
-    // public function renderView(string $view, array $params = []): string
-    // {
-    //     return Application::$app->view->renderView($view, $params);
-    // }
 }

@@ -23,8 +23,8 @@ class View
      */
     public function renderView(string $view, array $params = []): string
     {
-        $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view, $params);
+        $viewContent = $this->renderOnlyView($view, $params); // Here we define $this->title
+        $layoutContent = $this->layoutContent();              // Here we use $this->title
 
         return str_replace("{{content}}", $viewContent, $layoutContent);
     }
