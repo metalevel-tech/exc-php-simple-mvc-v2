@@ -4,6 +4,7 @@
  */
 
 use app\core\Application;
+
 ?>
 
 <!doctype html>
@@ -46,7 +47,7 @@ use app\core\Application;
                             <a class="nav-link" href="/login">Log in</a>
                         </li>
                     </ul>
-                    <?php else: ?>
+                <?php else: ?>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="/profile">Profile</a>
@@ -57,12 +58,12 @@ use app\core\Application;
                                 <a href="/logout">Log out</a>
 
                                 <!-- <form action="/logout" method="post">
-                                                            <input type="submit" value="Log out" />
-                                                        </form> -->
+                                                                <input type="submit" value="Log out" />
+                                                            </form> -->
                             </span>
                         </li>
                     </ul>
-                    <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
@@ -72,7 +73,13 @@ use app\core\Application;
             <div class="alert alert-success">
                 <?php echo Application::$app->session->getFlash('success'); ?>
             </div>
-            <?php endif; ?>
+        <?php endif; ?>
+
+        <?php if (Application::$app->session->getFlash('warning')): /* Display the flash messages */?>
+            <div class="alert alert-warning">
+                <?php echo Application::$app->session->getFlash('warning'); ?>
+            </div>
+        <?php endif; ?>
 
         {{content}}
     </div>

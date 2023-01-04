@@ -41,14 +41,21 @@ class SiteController extends Controller
      */
     public function contact(Request $request, Response $response): string|bool
     {
-        $contact = new ContactForm();
+        $contact = new ContactForm(Application::$CONTACT_US_DETAILS);
 
         if ($request->isPost()) {
             $contact->loadData($request->getBody());
-            if ($contact->validate() && $contact->send()) {
-                Application::$app->session->setFlash("success", "Thanks for contacting us!");
-                $response->redirect("/contact");
-                return true;
+            if ($contact->validate()) {
+                if ($contact->send()) {
+                    Application::$app->session->setFlash("success", "Thanks for contacting us!");
+                    $response->redirect("/contact");
+                    return true;
+                } else {
+                    Application::$app->session->setFlash("warning", "Something went wrong, please try again later.");
+                    return $this->render("contact", [
+                        "model" => $contact
+                    ]);
+                }
             }
         }
 

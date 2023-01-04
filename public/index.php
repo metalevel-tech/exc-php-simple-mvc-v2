@@ -34,6 +34,10 @@ $config = [
         "dsn" => $_ENV["DB_DSN"],
         "user" => $_ENV["DB_USER"],
         "password" => $_ENV["DB_PASSWORD"],
+    ],
+    "contactUsDetails" => [
+        "emailServer" => $_ENV["EMAIL_SERVER"],
+        "emailAdmin" => $_ENV["EMAIL_ADMIN"]
     ]
 ];
 

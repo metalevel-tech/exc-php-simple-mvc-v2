@@ -15,9 +15,10 @@ use app\core\db\DbModel;
 
 class Application
 {
-    public static string $ROOT_DIR;
-    public string $layout = "main"; // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
     public static Application $app;
+    public static string $ROOT_DIR;
+    public static array $CONTACT_US_DETAILS;
+    public string $layout = "main"; // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
     public string $userClass;
     public Router $router;
     public Request $request;
@@ -44,6 +45,7 @@ class Application
 
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
+        self::$CONTACT_US_DETAILS = $config["contactUsDetails"];
 
         $this->request = new Request();
         $this->response = new Response();
