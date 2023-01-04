@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Field
+ * Class FieldBase
  * 
  * @author  Spas Z. Spasov <spas.z.spasov@metalevel.tech>
  * @package app\core\form
@@ -10,18 +10,13 @@
  */
 
 namespace app\core\form;
-
 use app\core\Model;
 
-class Field
+abstract class FieldBase
 {
-    public const TYPE_TEXT = 'text';
-    public const TYPE_PASSWORD = 'password';
-    public const TYPE_NUMBER = 'number';
-
-    public Model $model;
+    abstract public function renderFieldTag(): string;
     public string $attribute;
-    public string $type;
+    public Model $model;
 
     /**
      * Summary of __construct
@@ -30,10 +25,10 @@ class Field
      */
     public function __construct(Model $model, string $attribute)
     {
-        $this->type = self::TYPE_TEXT;
         $this->model = $model;
         $this->attribute = $attribute;
     }
+
 
     /**
      * Summary of __toString
@@ -44,28 +39,15 @@ class Field
         return sprintf('
             <div class="mb-3">
                 <label>%s</label>
-                <input type="%s" name="%s" value="%s" class="form-control%s">
+                %s
                 <div class="invalid-feedback">
                     %s
                 </div>
             </div>
             ',
             $this->model->getLabel($this->attribute),
-            $this->type,
-            $this->attribute,
-            $this->model->{$this->attribute},
-            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
+            $this->renderFieldTag(),
             $this->model->getFirstError($this->attribute)
         );
-    }
-
-    /**
-     * Summary of passwordField
-     * @return Field
-     */
-    public function passwordField(): Field
-    {
-        $this->type = self::TYPE_PASSWORD;
-        return $this;
     }
 }

@@ -10,12 +10,14 @@
  */
 
 namespace app\core;
+use app\core\db\Database;
 
 class Application
 {
-    public static string $ROOT_DIR;
-    public string $layout = "main"; // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
     public static Application $app;
+    public static string $ROOT_DIR;
+    public static array $CONTACT_US_DETAILS;
+    public string $layout = "main"; // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
     public string $userClass;
     public Router $router;
     public Request $request;
@@ -23,6 +25,7 @@ class Application
     public ? Controller $controller = null; // Default layout: https://youtu.be/BHuXI5JE9Qo?t=200
     public Session $session;
     public Database $db;
+    public View $view;
     public ? UserModel $user = null;
 
     /**
@@ -41,6 +44,7 @@ class Application
 
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
+        self::$CONTACT_US_DETAILS = $config["contactUsDetails"];
 
         $this->request = new Request();
         $this->response = new Response();
@@ -50,6 +54,7 @@ class Application
 
         $this->db = new Database($config["db"]);
 
+        $this->view = new View();
 
         // With the following approach we should be able to fetch the user when navigating between the pages.
         $primaryValue = $this->session->get("user");
@@ -84,7 +89,7 @@ class Application
             echo $this->router->resolve();
         } catch (\Exception $error) {
             $this->response->setStatusCode($error->getCode());
-            echo $this->router->renderView("_error", [
+            echo $this->view->renderView("_error", [
                 "exception" => $error
             ]);
         }
@@ -114,11 +119,11 @@ class Application
      * 
      * Save the user's identifier ('id' in this case) in a Session.
      * 
-     * @param DbModel $user
+     * @param UserModel $user
      * 
      * @return bool
      */
-    public function login(DbModel $user): bool
+    public function login(UserModel $user): bool
     {
         $this->user = $user;
         $primaryKey = $user->primaryKey();

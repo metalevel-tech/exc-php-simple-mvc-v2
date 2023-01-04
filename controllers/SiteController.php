@@ -11,8 +11,11 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
+use app\models\ContactForm;
 
 class SiteController extends Controller
 {
@@ -21,7 +24,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function home()
+    public function home(): string
     {
         $params = [
             "projectName" => "PHP Simple MVC Framework",
@@ -31,29 +34,33 @@ class SiteController extends Controller
     }
 
     /**
-     * contact
-     *
-     * @return string
+     * Summary of contact
+     * @param Request $request
+     * @param Response $response
+     * @return string|bool
      */
-    public function contact()
+    public function contact(Request $request, Response $response): string|bool
     {
-        return $this->render("contact");
-    }
+        $contact = new ContactForm(Application::$CONTACT_US_DETAILS);
 
-    /**
-     * handleContact
-     *
-     * @param  \app\core\Request $request
-     * @return string
-     */
-    public function handleContact(Request $request)
-    {
-        $body = $request->getBody();
-        // echo "<pre>";
-        // var_dump($body);
-        // echo "</pre>";
-        // exit;
+        if ($request->isPost()) {
+            $contact->loadData($request->getBody());
+            if ($contact->validate()) {
+                if ($contact->send()) {
+                    Application::$app->session->setFlash("success", "Thanks for contacting us!");
+                    $response->redirect("/contact");
+                    return true;
+                } else {
+                    Application::$app->session->setFlash("warning", "Something went wrong, please try again later.");
+                    return $this->render("contact", [
+                        "model" => $contact
+                    ]);
+                }
+            }
+        }
 
-        return "Handling submitted data";
+        return $this->render("contact", [
+            "model" => $contact
+        ]);
     }
 }

@@ -34,6 +34,10 @@ $config = [
         "dsn" => $_ENV["DB_DSN"],
         "user" => $_ENV["DB_USER"],
         "password" => $_ENV["DB_PASSWORD"],
+    ],
+    "contactUsDetails" => [
+        "emailServer" => $_ENV["EMAIL_SERVER"],
+        "emailAdmin" => $_ENV["EMAIL_ADMIN"]
     ]
 ];
 
@@ -50,7 +54,7 @@ $app->router->get("/", [SiteController::class, "home"]);
 $app->router->get("/home", [SiteController::class, "home"]);
 
 $app->router->get("/contact", [SiteController::class, "contact"]);
-$app->router->post("/contact", [SiteController::class, "handleContact"]);
+$app->router->post("/contact", [SiteController::class, "contact"]);
 
 $app->router->get("/login", [AuthController::class, "login"]);
 $app->router->post("/login", [AuthController::class, "login"]);

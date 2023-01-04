@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the main layout of the site.
+ * @var \app\core\View $this
  */
 
 use app\core\Application;
@@ -13,7 +13,9 @@ use app\core\Application;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PHP Simple MVC</title>
+    <title>
+        <?php echo $this->title ?> | PHP Simple MVC
+    </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
@@ -45,7 +47,7 @@ use app\core\Application;
                             <a class="nav-link" href="/login">Log in</a>
                         </li>
                     </ul>
-                    <?php else: ?>
+                <?php else: ?>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="/profile">Profile</a>
@@ -56,12 +58,12 @@ use app\core\Application;
                                 <a href="/logout">Log out</a>
 
                                 <!-- <form action="/logout" method="post">
-                                                        <input type="submit" value="Log out" />
-                                                    </form> -->
+                                                                <input type="submit" value="Log out" />
+                                                            </form> -->
                             </span>
                         </li>
                     </ul>
-                    <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
@@ -71,7 +73,13 @@ use app\core\Application;
             <div class="alert alert-success">
                 <?php echo Application::$app->session->getFlash('success'); ?>
             </div>
-            <?php endif; ?>
+        <?php endif; ?>
+
+        <?php if (Application::$app->session->getFlash('warning')): /* Display the flash messages */?>
+            <div class="alert alert-warning">
+                <?php echo Application::$app->session->getFlash('warning'); ?>
+            </div>
+        <?php endif; ?>
 
         {{content}}
     </div>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class LoginModel
+ * Class LoginForm
  * 
  * @author  Spas Z. Spasov <spas.z.spasov@metalevel.tech>
  * @package app\models
@@ -18,7 +18,7 @@ class LoginForm extends Model
 {
     public string $email = "";
     public string $password = "";
-    
+
     /**
      * Summary of login
      * 
@@ -27,12 +27,12 @@ class LoginForm extends Model
      * @return bool
      */
     public function login(): bool
-    {   
+    {
         // See the comments under the Part 5 video lesson: https://youtu.be/mtBIu9dfclY
         // In this case we've defined the method as static...
         $user = User::findOne(["email" => $this->email]);
 
-        
+
         if (!$user) {
             $this->addError("email", "User with this email does not exist!");
             return false;
@@ -45,7 +45,7 @@ class LoginForm extends Model
 
         return Application::$app->login($user);
     }
-    
+
     /**
      * Summary of rules
      * 
@@ -55,11 +55,11 @@ class LoginForm extends Model
     {
         return [
             "email" => [
-                self::RULE_REQUIRED,
-                self::RULE_EMAIL
+                    self::RULE_REQUIRED,
+                    self::RULE_EMAIL
             ],
             "password" => [
-                self::RULE_REQUIRED
+                    self::RULE_REQUIRED
             ]
         ];
     }

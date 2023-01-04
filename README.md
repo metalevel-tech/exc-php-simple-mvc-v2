@@ -22,12 +22,12 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 
 Covered topics:
 
-* Routing
-* Controllers
-* Views
-* Layouts
-* Project Structure
-* Composer initialize and autoload
+* Routing.
+* Controllers.
+* Views.
+* Layouts.
+* Project Structure.
+* Composer initialize and autoload.
 
 Related lessons and resources:
 
@@ -38,10 +38,10 @@ Related lessons and resources:
 
 Covered topics:
 
-* Registration and login forms
-* Modules
-* Forms
-* Validation
+* Registration and login forms.
+* Modules.
+* Forms.
+* Validation.
 
 Related lessons and resources:
 
@@ -52,7 +52,7 @@ Related lessons and resources:
 
 Covered topics:
 
-* Database connection
+* Database connection.
 * Migrations - [migration](https://youtu.be/Fnc-KUXjNFU?t=60) is a file which contains the change of the database.
 
 Related lessons and resources:
@@ -65,10 +65,10 @@ Related lessons and resources:
 
 Covered topics:
 
-* Registration
-* Password encryption
-* Set the user's status
-* Register only users with unique email
+* Registration.
+* Password encryption.
+* Set the user's status.
+* Register only users with unique email.
 * Sessions!
 
 Related lessons and resources:
@@ -79,7 +79,7 @@ Related lessons and resources:
 
 Covered topics:
 
-* Log-in implementation
+* Log-in implementation.
 
 Related lessons and resources:
 
@@ -89,13 +89,24 @@ Related lessons and resources:
 
 Covered topics:
 
-* Restricted access on routes (protected pages)
+* Restricted access on routes (protected pages).
 * Implement and improve an errors and exceptions system.
 * [Middlewares](https://en.wikipedia.org/wiki/Middleware) in this scenario is a special class which leaves between the request and the controller.
 
 Related lessons and resources:
 
 * [Restricted access on routes, Middlewares - Part 6 | PHP MVC Framework from Scratch](https://youtu.be/BHuXI5JE9Qo)
+
+### Stage 7
+
+Covered topics:
+
+* Implement page titles - view components - All "View" renderings should happened inside the view class - thus we can use its properties in side the "views" like `$this->title`. So at this stage we have moved some methods from Router.php to View.php.
+* Rendering improvements
+
+Related lessons and resources:
+
+* [Implement page titles and improve form rendering - Part 7 | PHP MVC Framework from scratch](https://youtu.be/kyoeX77HCh8)
 
 ## PHP Hints
 
