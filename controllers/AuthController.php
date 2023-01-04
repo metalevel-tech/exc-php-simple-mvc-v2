@@ -67,10 +67,9 @@ class AuthController extends Controller
     }
 
     /**
-     * register
-     *
-     * @param  Request $request
-     * 
+     * Summary of register
+     * @param Request $request
+     * @param Response $response
      * @return string|bool
      */
     public function register(Request $request, Response $response): string|bool
@@ -106,6 +105,12 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Summary of logout
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
     public function logout(Request $request, Response $response): void
     {
         Application::$app->session->setFlash("success", "Good bye. See you later!");
@@ -113,6 +118,10 @@ class AuthController extends Controller
         $response->redirect("/");
     }
 
+    /**
+     * Summary of profile
+     * @return string
+     */
     public function profile(): string
     {
         $params = [

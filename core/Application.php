@@ -10,6 +10,8 @@
  */
 
 namespace app\core;
+use app\core\db\Database;
+use app\core\db\DbModel;
 
 class Application
 {
@@ -25,7 +27,6 @@ class Application
     public Database $db;
     public View $view;
     public ? DbModel $user = null;
-    // public ? UserModel $user = null;
 
     /**
      * Summary of __construct

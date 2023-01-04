@@ -4,12 +4,13 @@
  * Class Database
  * 
  * @author  Spas Z. Spasov <spas.z.spasov@metalevel.tech>
- * @package app\core
+ * @package app\core\db
  * 
  * PHP MVC Framework, based on https://github.com/thecodeholic/php-mvc-framework
  */
 
-namespace app\core;
+namespace app\core\db;
+use app\core\Application;
 
 class Database
 {
