@@ -11,7 +11,6 @@
 
 namespace app\core;
 use app\core\db\Database;
-use app\core\db\DbModel;
 
 class Application
 {
@@ -27,7 +26,7 @@ class Application
     public Session $session;
     public Database $db;
     public View $view;
-    public ? DbModel $user = null;
+    public ? UserModel $user = null;
 
     /**
      * Summary of __construct
@@ -120,11 +119,11 @@ class Application
      * 
      * Save the user's identifier ('id' in this case) in a Session.
      * 
-     * @param DbModel $user
+     * @param UserModel $user
      * 
      * @return bool
      */
-    public function login(DbModel $user): bool
+    public function login(UserModel $user): bool
     {
         $this->user = $user;
         $primaryKey = $user->primaryKey();
