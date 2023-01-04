@@ -4,7 +4,7 @@
  * @var \app\core\View $this 
  */
 
- $this->title = "Login";
+$this->title = "Login";
 
 use app\core\form\Form;
 

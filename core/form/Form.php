@@ -44,10 +44,10 @@ class Form
      * Summary of field
      * @param Model $model
      * @param string $attribute
-     * @return Field
+     * @return FieldInput
      */
-    public function field(Model $model, string $attribute): Field
+    public function field(Model $model, string $attribute): FieldInput
     {
-        return new Field($model, $attribute);
+        return new FieldInput($model, $attribute);
     }
 }
