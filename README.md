@@ -5,7 +5,7 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 ## References
 
 * The Codeholic at YouTube: ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/playlist?list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1)
-* The Codeholic at GitHub: ["Build PHP MVC Framework from Scratch"](https://github.com/thecodeholic/php-mvc-framework)
+* The Codeholic at GitHub: ["Build PHP MVC Framework from Scratch" (github.com/thecodeholic/php-mvc-framework)](https://github.com/thecodeholic/php-mvc-framework)
 * MLT Wiki: [Git CLI hints](https://wiki.metalevel.tech/wiki/Git_CLI_hints)
 * Free Code Camp: [Push a new local branch to a remote Git repository and track it too](https://forum.freecodecamp.org/t/push-a-new-local-branch-to-a-remote-git-repository-and-track-it-too/13222)
 * Bootstrap: [Bootstrap 5.2 download](https://getbootstrap.com/docs/5.2/getting-started/download/)
@@ -15,6 +15,7 @@ Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build P
 * CreatifWerks: [Difference between `printf` and `sprintf` PHP](https://www.creatifwerks.com/2020/06/18/difference-between-printf-and-sprintf-php/)
 * Jakub Míšek at YouTube: [Profiling PHP in Visual Studio Code](https://youtu.be/VQB6pdDhGWs)
 * [PHP dotenv at GitHub](https://github.com/vlucas/phpdotenv) | [PHP dotenv instructions from the main guide](https://youtu.be/Fnc-KUXjNFU?t=660)
+* The Codeholic at GitHub: [**PHP Developer **](https://github.com/thecodeholic/php-developer-roadmap)
 
 ## Stages
 
@@ -102,11 +103,28 @@ Related lessons and resources:
 Covered topics:
 
 * Implement page titles - view components - All "View" renderings should happened inside the view class - thus we can use its properties in side the "views" like `$this->title`. So at this stage we have moved some methods from Router.php to View.php.
-* Rendering improvements
+* Rendering improvements.
+* Contact form improvements and email sending implementation.
 
 Related lessons and resources:
 
 * [Implement page titles and improve form rendering - Part 7 | PHP MVC Framework from scratch](https://youtu.be/kyoeX77HCh8)
+
+### Stage 8
+
+Covered topics:
+
+* Make the framework's core a reusable Composer package.
+
+  Related lessons and resources:
+
+  * [Make framework core reusable composer package - Part 8 | PHP MVC Framework from scratch](https://youtu.be/mbDBVt1SBKg)
+  * [github.com/thecodeholic/**php-mvc-framework**](https://github.com/thecodeholic/php-mvc-framework)
+  * [github.com/thecodeholic/**tc-php-mvc-core**](https://github.com/thecodeholic/tc-php-mvc-core)
+  * Register the package in [Packagist](https://packagist.org/): <https://youtu.be/mbDBVt1SBKg?t=333>
+  * Change the NAMESPACE of the framework's core: <https://youtu.be/mbDBVt1SBKg?t=658>
+
+  Currently only the [Events](https://youtu.be/mbDBVt1SBKg?t=1740) part is applied, and the rest of the lesson (creating releases and Composer package for the core) is skipped in this repository.
 
 ## PHP Hints
 

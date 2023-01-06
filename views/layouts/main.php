@@ -58,8 +58,8 @@ use app\core\Application;
                                 <a href="/logout">Log out</a>
 
                                 <!-- <form action="/logout" method="post">
-                                                                <input type="submit" value="Log out" />
-                                                            </form> -->
+                                                                    <input type="submit" value="Log out" />
+                                                                </form> -->
                             </span>
                         </li>
                     </ul>
@@ -69,6 +69,8 @@ use app\core\Application;
     </nav>
 
     <div class="container mt-5">
+        <?php /** https://getbootstrap.com/docs/5.0/components/alerts/ */?>
+
         <?php if (Application::$app->session->getFlash('success')): /* Display the flash messages */?>
             <div class="alert alert-success">
                 <?php echo Application::$app->session->getFlash('success'); ?>
