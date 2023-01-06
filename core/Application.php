@@ -11,6 +11,7 @@
 
 namespace app\core;
 use app\core\db\Database;
+use Closure;
 
 class Application
 {
@@ -27,6 +28,12 @@ class Application
     public Database $db;
     public View $view;
     public ? UserModel $user = null;
+
+    // Event logging
+    const EVENT_BEFORE_REQUEST = "beforeREquest";
+    const EVENT_AFTER_REQUEST = "afterREquest";
+    protected array $eventListeners = [];
+
 
     /**
      * Summary of __construct
@@ -85,6 +92,9 @@ class Application
      */
     public function run(): void
     {
+        // Trigger the callbacks for the event EVENT_BEFORE_REQUEST
+        $this->triggerEvent(self::EVENT_BEFORE_REQUEST);
+
         try {
             echo $this->router->resolve();
         } catch (\Exception $error) {
@@ -132,9 +142,39 @@ class Application
         return true;
     }
 
+    /**
+     * Summary of logout
+     * @return void
+     */
     public function logout(): void
     {
         $this->user = null;
         $this->session->remove("user");
+    }
+
+    /**
+     * Summary of triggerEvent
+     * @param string $eventName
+     * @return void
+     */
+    public function triggerEvent(string $eventName): void
+    {
+        $callbacks = $this->eventListeners[$eventName] ?? [];
+
+        // Iterate over all callback of the given event name and call them
+        foreach($callbacks as $callback) {
+            call_user_func($callback);
+        }
+    }
+
+    /**
+     * Summary of on
+     * @param string $eventName
+     * @param Closure $callback
+     * @return void
+     */
+    public function on(string $eventName, Closure $callback): void
+    {
+        $this->eventListeners[$eventName][] = $callback;
     }
 }
