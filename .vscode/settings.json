@@ -56,7 +56,13 @@
     "packagist",
     "Packagist",
     "NAMESPACE",
-    "namespace"
+    "namespace",
+    "Dockerize",
+    "dockerize",
+    "NextCloud",
+    "OnlyOffice",
+    "Zura",
+    "TheCodeholic"
   ],
   "cSpell.words": [
     "async",
@@ -117,7 +123,13 @@
     "packagist",
     "Packagist",
     "NAMESPACE",
-    "namespace"
+    "namespace",
+    "Dockerize",
+    "dockerize",
+    "NextCloud",
+    "OnlyOffice",
+    "Zura",
+    "TheCodeholic"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],

@@ -1,23 +1,10 @@
 # PHP Model View Controller (MVC)
 
-Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/watch?v=WKy-N0q3WRo&list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1) course provided by The Codeholic at YouTube. The full course is about 6 hours and 30 minutes long.
-
-## References
-
-* The Codeholic at YouTube: ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/playlist?list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1)
-* The Codeholic at GitHub: ["Build PHP MVC Framework from Scratch" (github.com/thecodeholic/php-mvc-framework)](https://github.com/thecodeholic/php-mvc-framework)
-* MLT Wiki: [Git CLI hints](https://wiki.metalevel.tech/wiki/Git_CLI_hints)
-* Free Code Camp: [Push a new local branch to a remote Git repository and track it too](https://forum.freecodecamp.org/t/push-a-new-local-branch-to-a-remote-git-repository-and-track-it-too/13222)
-* Bootstrap: [Bootstrap 5.2 download](https://getbootstrap.com/docs/5.2/getting-started/download/)
-* PHP: [Typed properties (v.7.4+)](https://www.php.net/manual/en/migration74.new-features.php)
-* Kinsta: [What’s New in PHP 8.1: Features, Changes, Improvements, and More](https://kinsta.com/blog/php-8-1/#firstclass-callable-syntax)
-* Lindevs: [Calling Non-Static Class Methods Statically Produces Fatal Error in PHP 8.0](https://lindevs.com/calling-non-static-class-methods-statically-produces-fatal-error-in-php-8-0) in relation with [this part](https://youtu.be/GTESlsYTUns?t=3301) ot the main guide.
-* CreatifWerks: [Difference between `printf` and `sprintf` PHP](https://www.creatifwerks.com/2020/06/18/difference-between-printf-and-sprintf-php/)
-* Jakub Míšek at YouTube: [Profiling PHP in Visual Studio Code](https://youtu.be/VQB6pdDhGWs)
-* [PHP dotenv at GitHub](https://github.com/vlucas/phpdotenv) | [PHP dotenv instructions from the main guide](https://youtu.be/Fnc-KUXjNFU?t=660)
-* The Codeholic at GitHub: [**PHP Developer **](https://github.com/thecodeholic/php-developer-roadmap)
+Sample example of PHP MVC. It is like a tutorial and follows the guide ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/watch?v=WKy-N0q3WRo&list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1) course provided by Zura - [TheCodeholic](https://thecodeholic.com/) at YouTube. The full course is about 6 hours and 30 minutes long.
 
 ## Stages
+
+The stages covers the parts from the ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/watch?v=WKy-N0q3WRo&list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1) series. Each stage has its oun branch and along with the commit messages they could be used as an alternative guide for the course/series. Also I want to write a plenty of comments in the code to make it more readable and understandable. The code is written in PHP 8.1. so there a some really small difference between the one provided within the series.
 
 ### Stage 1
 
@@ -112,11 +99,9 @@ Related lessons and resources:
 
 ### Stage 8
 
-Covered topics:
+Covered topics and references:
 
-* Make the framework's core a reusable Composer package.
-
-  Related lessons and resources:
+* Make the framework's core a reusable Composer package - related lessons and resources:
 
   * [Make framework core reusable composer package - Part 8 | PHP MVC Framework from scratch](https://youtu.be/mbDBVt1SBKg)
   * [github.com/thecodeholic/**php-mvc-framework**](https://github.com/thecodeholic/php-mvc-framework)
@@ -125,6 +110,13 @@ Covered topics:
   * Change the NAMESPACE of the framework's core: <https://youtu.be/mbDBVt1SBKg?t=658>
 
   Currently only the [Events](https://youtu.be/mbDBVt1SBKg?t=1740) part is applied, and the rest of the lesson (creating releases and Composer package for the core) is skipped in this repository.
+
+* Dockerize the application - related lessons and resources:
+
+  * [**How to run your PHP app in docker with MySQL**](https://youtu.be/ZFCR1nERKBk) - really good and simplified manual!
+  * MLT Wiki: [Docker Basic Setup](https://wiki.metalevel.tech/wiki/Docker_Basic_Setup)
+  * MLT Wiki: [NextCloud and OnlyOffice via Docker](https://wiki.metalevel.tech/wiki/NextCloud_and_OnlyOffice_via_Docker)
+  * Composer: <https://getcomposer.org/download/>
 
 ## PHP Hints
 
@@ -167,3 +159,19 @@ scripts/sql/php_mvc_db_remove.sql | sudo mysql
 * MySQL 8.0 Reference Manual: [Data Types](https://dev.mysql.com/doc/refman/8.0/en/data-types.html)
 * Learn SQL: [An Overview of MySQL Data Types](https://learnsql.com/blog/mysql-data-types/)
 * Stack Overflow: [How much UTF-8 text fits in a MySQL "Text" field?](https://stackoverflow.com/a/4420195/6543935)
+
+## General references
+
+* The Codeholic at YouTube: ["Build PHP MVC Framework from Scratch"](https://www.youtube.com/playlist?list=PLLQuc_7jk__Uk_QnJMPndbdKECcTEwTA1)
+* The Codeholic at GitHub: ["Build PHP MVC Framework from Scratch" (github.com/thecodeholic/php-mvc-framework)](https://github.com/thecodeholic/php-mvc-framework)
+* MLT Wiki: [Git CLI hints](https://wiki.metalevel.tech/wiki/Git_CLI_hints)
+* Free Code Camp: [Push a new local branch to a remote Git repository and track it too](https://forum.freecodecamp.org/t/push-a-new-local-branch-to-a-remote-git-repository-and-track-it-too/13222)
+* Bootstrap: [Bootstrap 5.2 download](https://getbootstrap.com/docs/5.2/getting-started/download/)
+* PHP: [Typed properties (v.7.4+)](https://www.php.net/manual/en/migration74.new-features.php)
+* Kinsta: [What’s New in PHP 8.1: Features, Changes, Improvements, and More](https://kinsta.com/blog/php-8-1/#firstclass-callable-syntax)
+* Lindevs: [Calling Non-Static Class Methods Statically Produces Fatal Error in PHP 8.0](https://lindevs.com/calling-non-static-class-methods-statically-produces-fatal-error-in-php-8-0) in relation with [this part](https://youtu.be/GTESlsYTUns?t=3301) ot the main guide.
+* CreatifWerks: [Difference between `printf` and `sprintf` PHP](https://www.creatifwerks.com/2020/06/18/difference-between-printf-and-sprintf-php/)
+* Jakub Míšek at YouTube: [Profiling PHP in Visual Studio Code](https://youtu.be/VQB6pdDhGWs)
+* [PHP dotenv at GitHub](https://github.com/vlucas/phpdotenv) | [PHP dotenv instructions from the main guide](https://youtu.be/Fnc-KUXjNFU?t=660)
+* The Codeholic at GitHub: [**PHP Developer **](https://github.com/thecodeholic/php-developer-roadmap)
+* RIP Tutorial: [Passing a callback function as a parameter](https://riptutorial.com/php/example/1283/passing-a-callback-function-as-a-parameter)
