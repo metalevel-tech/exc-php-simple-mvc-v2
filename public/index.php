@@ -50,6 +50,22 @@ use app\controllers\AuthController;
 
 $app = new Application($rootPath, $config);
 
+// Register a callback for the event EVENT_BEFORE_REQUEST
+$app->on(Application::EVENT_BEFORE_REQUEST, function () {
+    /**
+    * This will be seen on the top at the frontend..
+    echo "Before request";
+    */
+
+    // Create simple logging, https://stackoverflow.com/questions/19898688/how-to-create-a-logfile-in-php
+    $request = Application::$app->request->method();
+    $reqPath = Application::$app->request->getPath();
+    $logLine = "User: " . $_SERVER['REMOTE_ADDR'] . " - "
+        . date("F j, Y, g:i a") . ": Before '$request' request - $reqPath" . PHP_EOL;
+    $logFile = "/tmp/php-mvc.log";
+    file_put_contents($logFile, $logLine, FILE_APPEND);
+});
+
 $app->router->get("/", [SiteController::class, "home"]);
 $app->router->get("/home", [SiteController::class, "home"]);
 
